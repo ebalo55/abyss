@@ -8,12 +8,11 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # library inclusion
-#add_compile_definitions(FMT_HEADER_ONLY)
-#find_package(fmt REQUIRED)
+add_compile_definitions(FMT_HEADER_ONLY)
 find_package(spdlog REQUIRED)
 
 # project asset definition
-add_executable(${PROJECT_NAME} main.cpp Logger.cpp Logger.h)
+add_executable(${PROJECT_NAME} main.cpp logger/Logger.cpp logger/Logger.h logger/logger_inl.h)
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         spdlog::libspdlog
