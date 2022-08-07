@@ -1,4 +1,4 @@
-#include "logger/Logger.h"
+#include "logger/Settings.h"
 
 void logTestMessages(int p) {
     logger::trace("This is a trace text with a parameter ({})", p);

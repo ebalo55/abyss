@@ -12,7 +12,7 @@ add_compile_definitions(FMT_HEADER_ONLY)
 find_package(spdlog REQUIRED)
 
 # project asset definition
-add_executable(${PROJECT_NAME} main.cpp logger/Logger.cpp logger/Logger.h logger/logger_inl.h)
+add_executable(${PROJECT_NAME} main.cpp logger/Settings.cpp logger/Settings.h logger/helpers/helper_logger.h logger/Generator.cpp logger/Generator.h logger/helpers.h logger/helpers/helper_generator.h logger/logger.h)
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         spdlog::libspdlog

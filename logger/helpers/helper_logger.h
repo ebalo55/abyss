@@ -2,8 +2,8 @@
 // Created by BLSMNL00E on 06/08/2022.
 //
 
-#ifndef SPDLOG_SAMPLE_LOGGER_INL_H
-#define SPDLOG_SAMPLE_LOGGER_INL_H
+#ifndef SPDLOG_SAMPLE_HELPER_LOGGER_H
+#define SPDLOG_SAMPLE_HELPER_LOGGER_H
 
 #include <spdlog/spdlog.h>
 
@@ -41,4 +41,4 @@ namespace logger {
     inline void stacktrace() {}
 }
 
-#endif //SPDLOG_SAMPLE_LOGGER_INL_H
+#endif //SPDLOG_SAMPLE_HELPER_LOGGER_H

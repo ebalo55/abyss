@@ -2,18 +2,19 @@
 // Created by BLSMNL00E on 06/08/2022.
 //
 
-#include "Logger.h"
+#include "Settings.h"
 
-namespace logger {
+namespace abyss::logger {
     // initialize the 'Settings' class static variables
     Settings::instance_t Settings::instance = nullptr;
-
+	
     Settings::Settings() {
         this->setLogLevel(log_level_t::trace);
         this->setLogPattern();
     }
 
     Settings::instance_t Settings::getInstance() {
+		[[unlikely]]
         if (instance == nullptr) {
             instance = std::shared_ptr<Settings>(new Settings());
         }
@@ -27,23 +28,7 @@ namespace logger {
         return Settings::log_level;
     }
 
-    bool Settings::registerLogger(const logger_ptr &logger) {
-        if (Settings::registered_loggers.contains(logger->name())) {
-            return false;
-        }
-        auto insertion_result = Settings::registered_loggers.emplace(logger->name(), logger);
-        return insertion_result.second;
-    }
-
-    logger_ptr Settings::makeConsoleLogger(const std::string &logger_name) {
-        logger_ptr logger = spdlog::stdout_color_mt(logger_name);
-        if (Settings::registerLogger(logger)) {
-            return logger;
-        }
-        return nullptr;
-    }
-
-    void Settings::setLogPattern() {
+    void Settings::setLogPattern() const {
         spdlog::set_pattern(
                 fmt::format(
                         "{}{}{}{}{}%v",

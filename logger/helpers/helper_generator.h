@@ -1,0 +1,12 @@
+//
+// Created by BLSMNL00E on 07/08/2022.
+//
+
+#ifndef SPDLOG_SAMPLE_HELPER_GENERATOR_H
+#define SPDLOG_SAMPLE_HELPER_GENERATOR_H
+
+namespace abyss::logger {
+
+}
+
+#endif //SPDLOG_SAMPLE_HELPER_GENERATOR_H
