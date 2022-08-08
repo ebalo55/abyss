@@ -5,8 +5,11 @@
 #ifndef SPDLOG_SAMPLE_LOGGER_H
 #define SPDLOG_SAMPLE_LOGGER_H
 
+#define INCLUDE_QT_SINK 0
+
 #include "Settings.h"
-#include "Generator.h"
+// helpers indirectly includes Generator.h
+#include "helpers.h"
 
 namespace abyss::logger {
 	/**
