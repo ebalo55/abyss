@@ -7,7 +7,7 @@
 
 #include <spdlog/spdlog.h>
 
-namespace logger {
+namespace abyss::logger {
     template<typename ...Args>
     inline void warn(spdlog::format_string_t<Args...> fmt, Args &&... args) {
         spdlog::warn(fmt, std::forward<Args>(args)...);

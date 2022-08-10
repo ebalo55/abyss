@@ -5,7 +5,6 @@
 #ifndef SPDLOG_SAMPLE_SETTINGS_H
 #define SPDLOG_SAMPLE_SETTINGS_H
 
-#include "helpers.h"
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <unordered_map>

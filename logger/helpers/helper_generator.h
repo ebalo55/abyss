@@ -109,7 +109,7 @@ namespace abyss::logger {
 	 * @return
 	 */
 	logger_ptr make_file_logger(const std::string &logger_name, const std::string &filename) {
-		return Generator::getInstance()->makeFileLogger(logger_name, filename, filename);
+		return Generator::getInstance()->makeFileLogger(logger_name, filename);
 	}
 	
 	/**
@@ -121,7 +121,7 @@ namespace abyss::logger {
 	logger_ptr make_syslog_logger(const std::string &logger_name, const std::string &identity) {
 		return Generator::getInstance()->makeSyslogLogger(logger_name, identity);
 	}
-	
+
 	/**
 	 * Create and register a new instance of a multi-threaded systemd logger
 	 * @param logger_name
@@ -129,7 +129,11 @@ namespace abyss::logger {
 	 * @return
 	 */
 	logger_ptr make_systemd_logger(const std::string &logger_name, const std::string &identity) {
+#if includes_systemd()
 		return Generator::getInstance()->makeSystemdLogger(logger_name, identity);
+#else
+        return nullptr;
+#endif
 	}
 	
 	/**
@@ -194,7 +198,11 @@ namespace abyss::logger {
 			const std::string &collection,
 			const std::string &connection_uri = "mongodb://localhost:27017"
 	) {
+#if includes_mongo_db()
 		return Generator::getInstance()->makeMongoDbLogger(logger_name, db, collection, connection_uri);
+#else
+        return nullptr;
+#endif
 	}
 
 #if includes_qt()
