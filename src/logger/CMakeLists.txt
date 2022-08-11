@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.22)
 
 include(../../cmake/utils.cmake)
 component_extract_version(abyss/logger ABYSS_LOGGER)
@@ -11,6 +11,10 @@ conan_basic_setup()
 set(spdlog_DIR ${CMAKE_BINARY_DIR})
 set(fmt_DIR ${CMAKE_BINARY_DIR})
 add_compile_definitions(FMT_HEADER_ONLY)
+
+option(ABYSS_LOGGER_INCLUDES_QT_SINK "Build Logger with Qt sink support" OFF)
+option(ABYSS_LOGGER_INCLUDES_SYSTEMD_SINK "Build Logger with Systemd sink support" OFF)
+option(ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK "Build Logger with Mongo Db sink support" OFF)
 
 # source definitions
 set(ABYSS_LOGGER_PUBLIC_API
@@ -36,6 +40,17 @@ add_library(Abyss::Logger ALIAS Logger)
 set_target_properties(Logger PROPERTIES
                 VERSION ${ABYSS_LOGGER_VERSION}
                 SOVERSION "${ABYSS_LOGGER_VERSION_MAJOR}.${ABYSS_LOGGER_VERSION_MINOR}")
+
+# define macro values
+if(ABYSS_LOGGER_INCLUDES_QT_SINK)
+    target_compile_definitions(Logger PRIVATE INCLUDE_QT_SINK=true)
+endif()
+if(ABYSS_LOGGER_INCLUDES_SYSTEMD_SINK)
+    target_compile_definitions(Logger PRIVATE INCLUDE_SYSTEMD_SINK=true)
+endif()
+if(ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK)
+    target_compile_definitions(Logger PRIVATE INCLUDE_MONGO_DB_SINK=true)
+endif()
 
 # add include directories
 target_include_directories(Logger

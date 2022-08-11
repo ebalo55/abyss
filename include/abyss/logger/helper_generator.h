@@ -158,7 +158,7 @@ namespace abyss::logger {
      * @param logger_name
      * @return
      */
-    logger_ptr makeMongoDbLogger(
+    logger_ptr make_mongo_db_logger(
             const std::string &logger_name,
             const std::string &db,
             const std::string &collection,
