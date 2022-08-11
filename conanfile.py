@@ -9,6 +9,7 @@ class ConanAbyss(ConanFile):
     license = "MIT"
     url = "https://github.com/ebalo55/abyss"
     description = "Abyss fullstack framework for C++"
+    author = "ebalo"
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
