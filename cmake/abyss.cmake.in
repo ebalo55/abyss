@@ -1,0 +1,11 @@
+@PACKAGE_INIT@
+
+set(_Abyss_supported_components Logger)
+
+foreach(_comp ${Abyss_FIND_COMPONENTS})
+  if (NOT _comp IN_LIST _Abyss_supported_components)
+    set(ABYSS_FOUND False)
+    set(ABYSS_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
+  endif()
+  include("${CMAKE_CURRENT_LIST_DIR}/Abyss${_comp}Targets.cmake")
+endforeach()

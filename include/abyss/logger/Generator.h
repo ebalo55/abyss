@@ -1,11 +1,11 @@
 //
-// Created by BLSMNL00E on 07/08/2022.
+// Created by ebalo on 07/08/2022.
 //
 
 #ifndef SPDLOG_SAMPLE_GENERATOR_H
 #define SPDLOG_SAMPLE_GENERATOR_H
 
-#include "macro.h"
+#include "abyss/logger/macro.h"
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <vector>

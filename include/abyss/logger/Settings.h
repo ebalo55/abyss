@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 06/08/2022.
+// Created by ebalo on 06/08/2022.
 //
 
 #ifndef SPDLOG_SAMPLE_SETTINGS_H
@@ -99,8 +99,16 @@ namespace abyss::logger {
          */
         instance_t hideLoggingLevel();
 
+        /**
+         * Reset the logging format to the default value
+         * @return
+         */
         instance_t resetLoggingFormat();
 
+        /**
+         * Hide all additional formatting from log messages
+         * @return
+         */
         instance_t hideAllFromLogs();
     };
 }

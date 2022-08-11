@@ -1,8 +1,8 @@
 //
-// Created by BLSMNL00E on 06/08/2022.
+// Created by ebalo on 06/08/2022.
 //
 
-#include "Settings.h"
+#include "abyss/logger/Settings.h"
 
 namespace abyss::logger {
     // initialize the 'Settings' class static variables
