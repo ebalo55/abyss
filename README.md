@@ -18,7 +18,7 @@ Thank you for considering contributing to the Abyss framework!
 The contribution guide can be found in the Abyss documentation.
 
 ## Code of Conduct
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](CONDUCT.md).
+In order to ensure that the Abyss community is welcoming to all, please review and abide by the [Code of Conduct](CONDUCT.md).
 
 ## Security Vulnerabilities
 If you discover a security vulnerability within Abyss, please send a private message to Ebalo55 via GitHub. 
