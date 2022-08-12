@@ -1,3 +1,7 @@
+> **Note**:<br>
+> Current revision is still in draft state, it may be incomplete or contain unstable code that will be changed
+> without prior communication in a next release
+
 # About Abyss
 Abyss is a fullstack framework focused on web application development with an expressive and easy syntax. 
 We believe development must be an enjoyable and creative experience to be truly fulfilling. 
