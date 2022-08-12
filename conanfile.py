@@ -33,7 +33,7 @@ class ConanAbyss(ConanFile):
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*", "include/*", "cmake/*"
-    requires = "spdlog/1.10.0", "fmt/8.1.1"
+    requires = "spdlog/1.10.0", "fmt/8.1.1", "gtest/cci.20210126"
 
     _cmake = None
 

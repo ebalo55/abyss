@@ -27,12 +27,12 @@ set(ABYSS_LOGGER_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/macro.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/version.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/version.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/abyss_logger.h ../../include/abyss/logger/types.h)
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/abyss_logger.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/types.h)
 set(ABYSS_LOGGER_SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/settings.cpp
         ${CMAKE_CURRENT_LIST_DIR}/generator.cpp
         ${CMAKE_CURRENT_LIST_DIR}/helper_generator.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/helper_logger.cpp
         ${CMAKE_CURRENT_LIST_DIR}/logger.cpp
         ${CMAKE_CURRENT_LIST_DIR}/abyss_logger.cpp
         ${ABYSS_LOGGER_PUBLIC_API})

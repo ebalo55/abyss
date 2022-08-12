@@ -73,11 +73,6 @@ namespace abyss::logger {
     void trace(spdlog::format_string_t<Args...> fmt, Args &&... args) {
         spdlog::trace(fmt, std::forward<Args>(args)...);
     }
-
-    /**
-     * Prints the current call stacktrace
-     */
-    void stacktrace();
 }
 
 #endif //SPDLOG_SAMPLE_HELPER_LOGGER_H
