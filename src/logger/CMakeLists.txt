@@ -25,6 +25,7 @@ set(ABYSS_LOGGER_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/helpers.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/logger.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/macro.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/version.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/version.h)
 set(ABYSS_LOGGER_SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/Settings.cpp
