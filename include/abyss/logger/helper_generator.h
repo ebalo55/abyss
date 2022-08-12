@@ -5,11 +5,9 @@
 #ifndef SPDLOG_SAMPLE_HELPER_GENERATOR_H
 #define SPDLOG_SAMPLE_HELPER_GENERATOR_H
 
-#include "abyss/logger/Generator.h"
+#include "abyss/logger/generator.h"
 
 namespace abyss::logger {
-    typedef std::shared_ptr<spdlog::logger> logger_ptr;
-
     /**
      * Retrieve the logger instance given its name if exists
      * @param logger_name

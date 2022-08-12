@@ -5,27 +5,27 @@
 
 namespace abyss::logger {
     logger_ptr get(const std::string &logger_name) {
-        return Generator::get(logger_name);
+        return generator::get(logger_name);
     }
 
     bool exists(const std::string &logger_name) {
-        return Generator::exists(logger_name);
+        return generator::exists(logger_name);
     }
 
     std::vector<std::string> list() {
-        return Generator::list();
+        return generator::list();
     }
 
     bool register_logger(const logger_ptr &logger) {
-        return Generator::getInstance()->registerLogger(logger);
+        return generator::getInstance()->registerLogger(logger);
     }
 
     logger_ptr make_stdout_logger(const std::string &logger_name) {
-        return Generator::getInstance()->makeStdoutLogger(logger_name);
+        return generator::getInstance()->makeStdoutLogger(logger_name);
     }
 
     logger_ptr make_stderr_logger(const std::string &logger_name) {
-        return Generator::getInstance()->makeStderrLogger(logger_name);
+        return generator::getInstance()->makeStderrLogger(logger_name);
     }
 
     logger_ptr
@@ -35,7 +35,7 @@ namespace abyss::logger {
             size_t max_filesize,
             size_t max_files
     ) {
-        return Generator::getInstance()->makeRotatingFileLogger(logger_name, filename, max_filesize, max_files);
+        return generator::getInstance()->makeRotatingFileLogger(logger_name, filename, max_filesize, max_files);
     }
 
     logger_ptr
@@ -46,15 +46,15 @@ namespace abyss::logger {
             int minute,
             size_t max_files
     ) {
-        return Generator::getInstance()->makeDailyRotatingFileLogger(logger_name, filename, hour, minute, max_files);
+        return generator::getInstance()->makeDailyRotatingFileLogger(logger_name, filename, hour, minute, max_files);
     }
 
     logger_ptr make_file_logger(const std::string &logger_name, const std::string &filename) {
-        return Generator::getInstance()->makeFileLogger(logger_name, filename);
+        return generator::getInstance()->makeFileLogger(logger_name, filename);
     }
 
     logger_ptr make_syslog_logger(const std::string &logger_name, const std::string &identity) {
-        return Generator::getInstance()->makeSyslogLogger(logger_name, identity);
+        return generator::getInstance()->makeSyslogLogger(logger_name, identity);
     }
 
     logger_ptr make_systemd_logger(const std::string &logger_name, const std::string &identity) {
@@ -66,11 +66,11 @@ namespace abyss::logger {
     }
 
     logger_ptr make_group(const std::string &logger_name, const std::vector<logger_ptr> &children) {
-        return Generator::getInstance()->makeGroup(logger_name, children);
+        return generator::getInstance()->makeGroup(logger_name, children);
     }
 
     logger_ptr make_windows_debug_logger(const std::string &logger_name) {
-        return Generator::getInstance()->makeWindowsDebugLogger(logger_name);
+        return generator::getInstance()->makeWindowsDebugLogger(logger_name);
     }
 
     template<class Rep, class Period>
@@ -79,7 +79,7 @@ namespace abyss::logger {
             const std::vector<logger_ptr> &children,
             std::chrono::duration<Rep, Period> max_skip_duration
     ) {
-        return Generator::getInstance()->makeDuplicateFilterGroup(logger_name, children, max_skip_duration);
+        return generator::getInstance()->makeDuplicateFilterGroup(logger_name, children, max_skip_duration);
     }
 
     logger_ptr make_hourly_rotating_file_logger(
@@ -87,7 +87,7 @@ namespace abyss::logger {
             const std::string &filename,
             size_t max_files
     ) {
-        return Generator::getInstance()->makeHourlyRotatingFileLogger(logger_name, filename, max_files);
+        return generator::getInstance()->makeHourlyRotatingFileLogger(logger_name, filename, max_files);
     }
 
     logger_ptr makeMongoDbLogger(
@@ -110,14 +110,14 @@ namespace abyss::logger {
 #endif
 
     logger_ptr make_tcp_logger(const std::string &logger_name, const spdlog::sinks::tcp_sink_config &config) {
-        return Generator::getInstance()->makeTcpLogger(logger_name, config);
+        return generator::getInstance()->makeTcpLogger(logger_name, config);
     }
 
     logger_ptr make_udp_logger(const std::string &logger_name, const spdlog::sinks::udp_sink_config &config) {
-        return Generator::getInstance()->makeUdpLogger(logger_name, config);
+        return generator::getInstance()->makeUdpLogger(logger_name, config);
     }
 
     logger_ptr make_windows_event_registry_logger(const std::string &logger_name, const std::string &source) {
-        return Generator::getInstance()->makeWindowsEventRegistryLogger(logger_name, source);
+        return generator::getInstance()->makeWindowsEventRegistryLogger(logger_name, source);
     }
 }

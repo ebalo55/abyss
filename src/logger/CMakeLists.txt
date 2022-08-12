@@ -20,19 +20,21 @@ option(ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK "Build Logger with Mongo Db sink supp
 set(ABYSS_LOGGER_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/helper_logger.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/helper_generator.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/Settings.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/Generator.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/settings.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/generator.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/helpers.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/logger.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/macro.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/version.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/version.h)
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/version.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/logger/abyss_logger.h ../../include/abyss/logger/types.h)
 set(ABYSS_LOGGER_SOURCES
-        ${CMAKE_CURRENT_LIST_DIR}/Settings.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Generator.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/settings.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/generator.cpp
         ${CMAKE_CURRENT_LIST_DIR}/helper_generator.cpp
         ${CMAKE_CURRENT_LIST_DIR}/helper_logger.cpp
         ${CMAKE_CURRENT_LIST_DIR}/logger.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/abyss_logger.cpp
         ${ABYSS_LOGGER_PUBLIC_API})
 
 # create library

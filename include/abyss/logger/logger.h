@@ -5,7 +5,7 @@
 #ifndef SPDLOG_SAMPLE_LOGGER_H
 #define SPDLOG_SAMPLE_LOGGER_H
 
-#include "abyss/logger/Settings.h"
+#include "abyss/logger/settings.h"
 // helpers indirectly includes Generator.h
 #include "abyss/logger/helpers.h"
 #include "abyss/logger/version.h"

@@ -21,4 +21,6 @@
 #define includes_systemd() (defined(INCLUDE_SYSTEMD_SINK) && INCLUDE_SYSTEMD_SINK)
 #define includes_mongo_db() (defined(INCLUDE_MONGO_DB_SINK) && INCLUDE_MONGO_DB_SINK)
 
+#define ABYSS_LOGGER_ALL_CHANNEL ("__all__")
+
 #endif //ABYSS_MACRO_H

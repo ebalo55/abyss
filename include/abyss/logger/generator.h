@@ -6,6 +6,7 @@
 #define SPDLOG_SAMPLE_GENERATOR_H
 
 #include "abyss/logger/macro.h"
+#include "abyss/logger/abyss_logger.h"
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <vector>
@@ -41,17 +42,18 @@
 #endif
 
 namespace abyss::logger {
-    typedef std::shared_ptr<spdlog::logger> logger_ptr;
+    typedef std::shared_ptr<abyss::logger::logger> logger_ptr;
 
-    class Generator {
+    class generator {
     private:
-        typedef std::shared_ptr<Generator> instance_t;
-        static instance_t instance;
+        typedef std::shared_ptr<generator> instance_t;
+        static instance_t instance_;
 
-        std::unordered_map<std::string, logger_ptr> registered_loggers = {};
-        std::vector<std::string> registered_names = {};
+        std::unordered_map<std::string, logger_ptr> registered_loggers_ = {};
+        std::vector<std::string> registered_names_ = {};
+        std::shared_ptr<spdlog::sinks::dist_sink_mt> group_all_sink_ = nullptr;
 
-        Generator();
+        generator();
 
         /**
          * Registers the provided logger if not exists and returns a pointer to the instance if registration succeeds
@@ -60,8 +62,16 @@ namespace abyss::logger {
          */
         logger_ptr registerAndReturn(const logger_ptr &logger);
 
+        /**
+         * Logger factory mostly cloned from the spdlog implementation, extended with the @a is_multi_threaded_sink
+         * @tparam sink_t
+         * @tparam sink_args_t
+         * @param logger_name
+         * @param args
+         * @return
+         */
         template<typename sink_t, typename... sink_args_t>
-        requires std::is_base_of_v<spdlog::sinks::base_sink<std::mutex>, sink_t>
+        requires is_multi_threaded_sink<sink_t>
         logger_ptr loggerFactory(std::string logger_name, sink_args_t &&... args);
 
     public:

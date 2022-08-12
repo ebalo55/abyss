@@ -6,7 +6,7 @@
 
 namespace abyss::logger {
     void init() {
-        Settings::getInstance();
-        Generator::getInstance();
+        settings::getInstance();
+        generator::getInstance();
     }
 }
