@@ -84,4 +84,4 @@ install(EXPORT LoggerTargets
 # library dependencies
 include(CMakeFindDependencyMacro)
 find_dependency(spdlog 1.10.0)
-find_dependency(fmt 8.1.1)
+find_dependency(fmt)

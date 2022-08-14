@@ -15,6 +15,7 @@ include_directories(include)
 
 # components inclusion
 add_subdirectory(src/logger)
+add_subdirectory(src/crypto)
 
 # define package configurator
 include(CMakePackageConfigHelpers)
