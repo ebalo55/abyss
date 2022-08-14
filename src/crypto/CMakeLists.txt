@@ -8,7 +8,6 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # library flag modification/definition
-#set(libsodium_DIR ${CMAKE_BINARY_DIR})
 
 # source definitions
 set(ABYSS_CRYPTO_PUBLIC_API
@@ -16,22 +15,28 @@ set(ABYSS_CRYPTO_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/version.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/crypto.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions/initialization_exception.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions/hex_decoding_exception.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions/b64_decoding_exception.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encodings.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encode.h)
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encode.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/coder.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         ${CMAKE_CURRENT_LIST_DIR}/crypto.cpp
         ${CMAKE_CURRENT_LIST_DIR}/exceptions/initialization_exception.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/encode.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/exceptions/hex_decoding_exception.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/exceptions/b64_decoding_exception.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/encode.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/coder.cpp)
 
 find_package(libsodium REQUIRED)
 
 # create library
 add_library(Crypto ${ABYSS_CRYPTO_SOURCES})
 add_executable(crypto-tmp-test ${ABYSS_CRYPTO_SOURCES} ${CMAKE_CURRENT_LIST_DIR}/../../main.cpp)
-target_link_libraries(Crypto libsodium::libsodium)
-target_link_libraries(crypto-tmp-test libsodium)
 add_library(Abyss::Crypto ALIAS Crypto)
+target_link_libraries(Crypto PRIVATE libsodium::libsodium)
+target_link_libraries(crypto-tmp-test PRIVATE Abyss::Crypto)
 set_target_properties(Crypto PROPERTIES
         VERSION ${ABYSS_CRYPTO_VERSION}
         SOVERSION "${ABYSS_CRYPTO_VERSION_MAJOR}.${ABYSS_CRYPTO_VERSION_MINOR}")

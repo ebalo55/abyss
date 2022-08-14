@@ -8,7 +8,7 @@
 #include <exception>
 
 namespace abyss::crypto::exceptions {
-	class initialization_exception : std::exception {
+	class hex_decoding_exception : std::exception {
 	public:
 		[[nodiscard]]
 		const char * what() const noexcept override;

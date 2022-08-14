@@ -6,7 +6,9 @@
 #define ABYSS_ENCODE_H
 
 #include <string>
+#include <sstream>
 #include "abyss/crypto/encodings.h"
+#include "abyss/crypto/exceptions/hex_decoding_exception.h"
 
 namespace abyss::crypto::encode {
 	/**
@@ -22,7 +24,7 @@ namespace abyss::crypto::encode {
 	 * @param encoding Encoding algorithm
 	 * @return
 	 */
-	std::string bin(std::string encoded, encodings encoding);
+	std::string bin(const std::string &encoded, encodings encoding);
 	
 	/**
 	 * Decode an encoded string into a binary one
@@ -31,7 +33,7 @@ namespace abyss::crypto::encode {
 	 * @param variant Base64 algorithm variant, applied only if base64 is selected as encoding algorithm
 	 * @return
 	 */
-	std::string bin(std::string encoded, encodings encoding, base64_variants variant);
+	std::string bin(const std::string& encoded, encodings encoding, base64_variants variant);
 	
 	/**
 	 * Encode a binary string to base64
