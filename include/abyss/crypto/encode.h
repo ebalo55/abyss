@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 14/08/2022.
+// Created by ebalo on 14/08/2022.
 //
 
 #ifndef ABYSS_ENCODE_H
@@ -8,7 +8,7 @@
 #include <string>
 #include <sstream>
 #include "abyss/crypto/encodings.h"
-#include "abyss/crypto/exceptions/hex_decoding_exception.h"
+#include "abyss/crypto/exceptions.h"
 
 namespace abyss::crypto::encode {
 	/**
@@ -41,14 +41,14 @@ namespace abyss::crypto::encode {
 	 * @param variant Base64 algorithm variant, applied only if base64 is selected as encoding algorithm
 	 * @return
 	 */
-	std::string base64(std::string plain, base64_variants variant);
+	std::string base64(const std::string& plain, base64_variants variant);
 	
 	/**
 	 * Encode a binary string to base64
 	 * @param plain Binary string to encode
 	 * @return
 	 */
-	std::string base64(std::string plain);
+	std::string base64(const std::string& plain);
 	
 	/**
 	 * All in one encoding function, from binary to the defined encoding
@@ -56,7 +56,7 @@ namespace abyss::crypto::encode {
 	 * @param encoding Encoding algorithm
 	 * @return
 	 */
-	std::string encode(std::string plain, encodings encoding);
+	std::string encode(const std::string& plain, encodings encoding);
 	
 	/**
 	 * All in one encoding function, from binary to the defined encoding

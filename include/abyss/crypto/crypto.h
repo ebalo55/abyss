@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 14/08/2022.
+// Created by ebalo on 14/08/2022.
 //
 
 #ifndef ABYSS_CRYPTO_H
@@ -7,10 +7,11 @@
 
 #include <sodium.h>
 #include <exception>
-#include "abyss/crypto/exceptions/initialization_exception.h"
+#include "abyss/crypto/exceptions.h"
 #include "abyss/crypto/version.h"
 #include "abyss/crypto/encodings.h"
 #include "abyss/crypto/encode.h"
+#include "abyss/crypto/coder.h"
 
 namespace abyss::crypto {
 	/**

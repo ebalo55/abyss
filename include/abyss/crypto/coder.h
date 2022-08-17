@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 14/08/2022.
+// Created by ebalo on 14/08/2022.
 //
 
 #ifndef ABYSS_CODER_H
@@ -8,9 +8,9 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <cmath>
 #include "abyss/crypto/encodings.h"
-#include "abyss/crypto/exceptions/hex_decoding_exception.h"
-#include "abyss/crypto/exceptions/b64_decoding_exception.h"
+#include "abyss/crypto/exceptions.h"
 
 namespace abyss::crypto {
 	class coder {

@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 14/08/2022.
+// Created by ebalo on 14/08/2022.
 //
 
 #include "abyss/crypto/encode.h"
@@ -10,43 +10,27 @@ namespace abyss::crypto::encode {
 		return coder::getInstance()->encodeHex(plain);
 	}
 	
-	std::string bin(const std::string &encoded, encodings encoding) {
-		switch (encoding) {
-			case ::binary:
-				return encoded;
-			case ::hex:
-				return coder::getInstance()->decodeHex(encoded);
-			case ::base64:
-				// forward to the specialized function
-				return bin(encoded, encoding, base64_variants::classic);
-		}
+	std::string decode(const std::string &encoded, encodings encoding) {
+		return coder::getInstance()->decode(encoded, encoding);
 	}
 	
-	std::string bin(const std::string &encoded, encodings encoding, base64_variants variant) {
-		switch (encoding) {
-			case ::binary:
-				return encoded;
-			case ::hex:
-				// forward to the proper implementation containing the decoding lambda
-				return bin(encoded, encoding);
-			case ::base64:
-				break;
-		}
+	std::string decode(const std::string &encoded, encodings encoding, base64_variants variant) {
+		return coder::getInstance()->decode(encoded, encoding, variant);
 	}
 	
-	std::string base64(std::string plain, base64_variants variant) {
-		return nullptr;
+	std::string base64(const std::string& plain, base64_variants variant) {
+		return coder::getInstance()->encodeBase64(plain, variant);
 	}
 	
-	std::string base64(std::string plain) {
-		return nullptr;
+	std::string base64(const std::string& plain) {
+		return coder::getInstance()->encodeBase64(plain);
 	}
 	
-	std::string encode(std::string plain, encodings encoding) {
-		return nullptr;
+	std::string encode(const std::string& plain, encodings encoding) {
+		return coder::getInstance()->encode(plain, encoding);
 	}
 	
 	std::string encode(std::string plain, encodings encoding, base64_variants variant) {
-		return nullptr;
+		return coder::getInstance()->encode(plain, encoding, variant);
 	}
 }

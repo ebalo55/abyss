@@ -1,5 +1,5 @@
 //
-// Created by BLSMNL00E on 14/08/2022.
+// Created by ebalo on 14/08/2022.
 //
 
 #ifndef ABYSS_ENCODINGS_H
