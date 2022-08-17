@@ -25,5 +25,11 @@ namespace abyss::crypto::exception {
         [[nodiscard]]
         const char * what() const noexcept override;
     };
+
+    class padding_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
 }
 #endif //ABYSS_EXCEPTIONS_H

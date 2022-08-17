@@ -8,7 +8,7 @@
 #include <string>
 #include <sstream>
 #include "abyss/crypto/encodings.h"
-#include "abyss/crypto/exceptions.h"
+#include "abyss/crypto/coder.h"
 
 namespace abyss::crypto::encode {
 	/**

@@ -7,6 +7,11 @@
 namespace abyss::crypto {
     std::shared_ptr<coder> coder::instance_ = nullptr;
 
+    void coder::cleanStream() {
+        ss_.clear();
+        ss_.str("");
+    }
+
     std::shared_ptr<coder> coder::getInstance() {
         if (instance_ == nullptr) {
             instance_ = std::shared_ptr<coder>(new coder());
@@ -131,11 +136,6 @@ namespace abyss::crypto {
             case base64:
                 return encodeBase64(plain, variant);
         }
-    }
-
-    void coder::cleanStream() {
-        ss_.clear();
-        ss_.str("");
     }
 
     std::string coder::decodeBase64(const std::string &b64, base64_variants variant) {

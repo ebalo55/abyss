@@ -10,35 +10,35 @@
 
 using namespace abyss::crypto;
 
-TEST(LoggerTest, CanEncodeAndDecodeHex) {
+TEST(CryptoTest, CanEncodeAndDecodeHex) {
     std::string encoded = abyss::crypto::coder::getInstance()->encodeHex("test");
     EXPECT_EQ(encoded, "74657374");
     std::string decoded = abyss::crypto::coder::getInstance()->decodeHex(encoded);
     EXPECT_EQ(decoded, "test");
 }
 
-TEST(LoggerTest, CanEncodeAndDecodeClassicBase64) {
+TEST(CryptoTest, CanEncodeAndDecodeClassicBase64) {
     std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test");
     EXPECT_EQ(encoded, "dGVzdA==");
     std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded);
     EXPECT_EQ(decoded, "test");
 }
 
-TEST(LoggerTest, CanEncodeAndDecodeNoPaddingBase64) {
+TEST(CryptoTest, CanEncodeAndDecodeNoPaddingBase64) {
     std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::no_padding);
     EXPECT_EQ(encoded, "dGVzdA");
     std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::no_padding);
     EXPECT_EQ(decoded, "test");
 }
 
-TEST(LoggerTest, CanEncodeAndDecodeUrlSafeBase64) {
+TEST(CryptoTest, CanEncodeAndDecodeUrlSafeBase64) {
     std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::url_safe);
     EXPECT_EQ(encoded, "dGVzdA==");
     std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::url_safe);
     EXPECT_EQ(decoded, "test");
 }
 
-TEST(LoggerTest, CanEncodeAndDecodeUrlSafeNoPaddingBase64) {
+TEST(CryptoTest, CanEncodeAndDecodeUrlSafeNoPaddingBase64) {
     std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::url_safe_no_padding);
     EXPECT_EQ(encoded, "dGVzdA");
     std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::url_safe_no_padding);

@@ -16,4 +16,8 @@ namespace abyss::crypto::exception {
     const char *initialization_exception::what() const noexcept {
         return "Unable to initialize cryptographic engine.";
     }
+
+    const char *padding_exception::what() const noexcept {
+        return "Unable to pad the string to the given block size.";
+    }
 } // abyss::crypto

@@ -18,13 +18,18 @@ set(ABYSS_CRYPTO_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encodings.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encode.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/coder.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/pad.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/padder.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         ${CMAKE_CURRENT_LIST_DIR}/crypto.cpp
         ${CMAKE_CURRENT_LIST_DIR}/encode.cpp
         ${CMAKE_CURRENT_LIST_DIR}/exceptions.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/coder.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/coder.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/padder.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/pad.cpp
+        )
 
 find_package(libsodium REQUIRED)
 

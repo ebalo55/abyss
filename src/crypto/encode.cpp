@@ -3,7 +3,6 @@
 //
 
 #include "abyss/crypto/encode.h"
-#include "abyss/crypto/coder.h"
 
 namespace abyss::crypto::encode {
 	std::string hex(const std::string &plain) {

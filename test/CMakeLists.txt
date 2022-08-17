@@ -11,6 +11,7 @@ set_target_properties(abyss_logger_test PROPERTIES LINKER_LANGUAGE CXX)
 
 add_executable(abyss_crypto_test
         crypto/coder_test.cpp
+        crypto/padder_test.cpp
         )
 target_link_libraries(abyss_crypto_test GTest::gtest_main Abyss::Crypto)
 set_target_properties(abyss_crypto_test PROPERTIES LINKER_LANGUAGE CXX)
