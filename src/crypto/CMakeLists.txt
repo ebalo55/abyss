@@ -20,7 +20,10 @@ set(ABYSS_CRYPTO_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/coder.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/pad.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/padder.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions.h)
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/random.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_encryption.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/random_generator.h ../../include/abyss/crypto/encryption.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         ${CMAKE_CURRENT_LIST_DIR}/crypto.cpp
@@ -29,7 +32,9 @@ set(ABYSS_CRYPTO_SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/coder.cpp
         ${CMAKE_CURRENT_LIST_DIR}/padder.cpp
         ${CMAKE_CURRENT_LIST_DIR}/pad.cpp
-        )
+        ${CMAKE_CURRENT_LIST_DIR}/random_generator.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/random.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/symmetric_encryption.cpp encryption.cpp)
 
 find_package(libsodium REQUIRED)
 

@@ -12,6 +12,8 @@
 #include "abyss/crypto/encodings.h"
 #include "abyss/crypto/encode.h"
 #include "abyss/crypto/pad.h"
+#include "abyss/crypto/random.h"
+#include "abyss/crypto/encryption.h"
 
 namespace abyss::crypto {
 	/**

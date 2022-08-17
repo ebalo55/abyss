@@ -31,5 +31,17 @@ namespace abyss::crypto::exception {
         [[nodiscard]]
         const char * what() const noexcept override;
     };
+
+    class symmetric_message_encryption_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_message_decryption_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
 }
 #endif //ABYSS_EXCEPTIONS_H

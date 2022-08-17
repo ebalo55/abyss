@@ -24,7 +24,20 @@ namespace abyss::crypto {
     public:
         static std::shared_ptr<padder> getInstance();
 
+        /**
+         * Pad the given string to the provided number of characters
+         * @param plain String to pad
+         * @param block_size Pad block size
+         * @return
+         */
         std::string pad(const std::string &plain, size_t block_size);
+
+        /**
+         * Unpad the given string given the block size
+         * @param padded String to unpad
+         * @param block_size Pad block size
+         * @return
+         */
         std::string unpad(const std::string &padded, size_t block_size);
     };
 } // crypto

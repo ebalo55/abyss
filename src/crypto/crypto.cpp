@@ -11,5 +11,7 @@ namespace abyss::crypto {
 			throw exception::initialization_exception();
 		}
 		coder::getInstance();
+        padder::getInstance();
+        random_generator::getInstance();
 	}
 }

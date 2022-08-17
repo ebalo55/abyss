@@ -20,4 +20,12 @@ namespace abyss::crypto::exception {
     const char *padding_exception::what() const noexcept {
         return "Unable to pad the string to the given block size.";
     }
+
+    const char *symmetric_message_encryption_exception::what() const noexcept {
+        return "Unable to encrypt the message.";
+    }
+
+    const char *symmetric_message_decryption_exception::what() const noexcept {
+        return "Unable to decrypt the message.";
+    }
 } // abyss::crypto
