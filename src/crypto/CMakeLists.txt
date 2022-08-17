@@ -8,6 +8,7 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # library flag modification/definition
+set(libsodium_DIR ${CMAKE_BINARY_DIR})
 
 # source definitions
 set(ABYSS_CRYPTO_PUBLIC_API

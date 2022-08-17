@@ -73,15 +73,6 @@ namespace abyss::logger {
         return generator::getInstance()->makeWindowsDebugLogger(logger_name);
     }
 
-    template<class Rep, class Period>
-    logger_ptr make_duplicate_filter_group(
-            const std::string &logger_name,
-            const std::vector<logger_ptr> &children,
-            std::chrono::duration<Rep, Period> max_skip_duration
-    ) {
-        return generator::getInstance()->makeDuplicateFilterGroup(logger_name, children, max_skip_duration);
-    }
-
     logger_ptr make_hourly_rotating_file_logger(
             const std::string &logger_name,
             const std::string &filename,

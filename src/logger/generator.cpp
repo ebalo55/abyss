@@ -167,37 +167,6 @@ namespace abyss::logger {
 #endif
     }
 
-    template<class Rep, class Period>
-    logger_ptr
-    generator::makeDuplicateFilterGroup(
-            const std::string &logger_name,
-            const std::vector<logger_ptr> &children,
-            std::chrono::duration<Rep, Period> max_skip_duration
-    ) {
-        // extract all the sinks from each provided logger
-        // NOTE: multiple nested sink groups gets automatically parsed as each distributed sink gets added to the list
-        //  of the sinks, and it automatically handles the log message spreading
-        std::vector<spdlog::sink_ptr> children_sinks = {};
-        for (const logger_ptr &child_logger: children) {
-            auto sinks = ((raw_logger_ptr)*child_logger)->sinks();
-
-            // push each sink in the children vector, this enables concatenation of multiple distributed sinks
-            for (const spdlog::sink_ptr &sink: sinks) {
-                children_sinks.push_back(sink);
-            }
-        }
-
-        // generate the logger instance with all the required children sinks
-        logger_ptr logger = loggerFactory<spdlog::sinks::dup_filter_sink_mt, std::chrono::duration<Rep, Period>, std::vector<spdlog::sink_ptr>>(
-                logger_name,
-                5,
-                // rvalue needed, forwarding it solves the issue
-                std::forward<std::vector<spdlog::sink_ptr>>(children_sinks)
-        );
-
-        return registerAndReturn(logger);
-    }
-
     logger_ptr generator::get(const std::string &logger_name) {
         if (generator::exists(logger_name)) {
             return generator::getInstance()->registered_loggers_.at(logger_name);

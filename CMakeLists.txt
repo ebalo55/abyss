@@ -38,3 +38,7 @@ install(FILES
         "${CMAKE_CURRENT_BINARY_DIR}/AbyssConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/abyss
         )
+
+# THIS MUST BE LAST
+# test inclusion
+add_subdirectory(test)

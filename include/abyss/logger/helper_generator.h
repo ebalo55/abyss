@@ -125,20 +125,6 @@ namespace abyss::logger {
     logger_ptr make_windows_debug_logger(const std::string &logger_name);
 
     /**
-     * Create and register a new instance of a multi-threaded distributed logger (group) with duplicate messages
-     * filter logging to this channel means logging to all channels of the group
-     * @param logger_name
-     * @param children
-     * @return
-     */
-    template<class Rep, class Period>
-    logger_ptr make_duplicate_filter_group(
-            const std::string &logger_name,
-            const std::vector<logger_ptr> &children,
-            std::chrono::duration<Rep, Period> max_skip_duration = std::chrono::seconds(3)
-    );
-
-    /**
      * Create and register a new instance of a multi-threaded hourly rotating file logger
      * @param logger_name
      * @param filename
