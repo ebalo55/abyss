@@ -11,27 +11,9 @@
 #include <sstream>
 #include "abyss/crypto/random.h"
 #include "abyss/crypto/exceptions.h"
+#include "abyss/crypto/types.h"
 
-namespace abyss::crypto {
-
-    struct encryption_data {
-        std::string message;
-        std::string key;
-        std::string nonce;
-    };
-    typedef struct encryption_data encryption_data_t;
-    typedef struct encryption_data encrypted_data_t;
-    typedef struct encryption_data decryption_data_t;
-
-    struct encryption_data_detached {
-        std::string authentication_tag;
-        std::string message;
-        std::string key;
-        std::string nonce;
-    };
-    typedef struct encryption_data_detached encrypted_data_detached_t;
-    typedef struct encryption_data_detached decryption_data_detached_t;
-
+namespace abyss::crypto::symmetric {
     class symmetric_encryption {
     private:
         static std::shared_ptr<symmetric_encryption> instance_;

@@ -41,19 +41,19 @@ set(ABYSS_LOGGER_SOURCES
 add_library(Logger ${ABYSS_LOGGER_SOURCES})
 add_library(Abyss::Logger ALIAS Logger)
 set_target_properties(Logger PROPERTIES
-                VERSION ${ABYSS_LOGGER_VERSION}
-                SOVERSION "${ABYSS_LOGGER_VERSION_MAJOR}.${ABYSS_LOGGER_VERSION_MINOR}")
+        VERSION ${ABYSS_LOGGER_VERSION}
+        SOVERSION "${ABYSS_LOGGER_VERSION_MAJOR}.${ABYSS_LOGGER_VERSION_MINOR}")
 
 # define macro values
-if(ABYSS_LOGGER_INCLUDES_QT_SINK)
+if (ABYSS_LOGGER_INCLUDES_QT_SINK)
     target_compile_definitions(Logger PRIVATE INCLUDE_QT_SINK=true)
-endif()
-if(ABYSS_LOGGER_INCLUDES_SYSTEMD_SINK)
+endif ()
+if (ABYSS_LOGGER_INCLUDES_SYSTEMD_SINK)
     target_compile_definitions(Logger PRIVATE INCLUDE_SYSTEMD_SINK=true)
-endif()
-if(ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK)
+endif ()
+if (ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK)
     target_compile_definitions(Logger PRIVATE INCLUDE_MONGO_DB_SINK=true)
-endif()
+endif ()
 
 # add include directories
 target_include_directories(Logger

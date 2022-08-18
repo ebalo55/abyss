@@ -25,23 +25,29 @@ TEST(CryptoTest, CanEncodeAndDecodeClassicBase64) {
 }
 
 TEST(CryptoTest, CanEncodeAndDecodeNoPaddingBase64) {
-    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::no_padding);
+    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::_no_padding);
     EXPECT_EQ(encoded, "dGVzdA");
-    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::no_padding);
+    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::_no_padding);
     EXPECT_EQ(decoded, "test");
 }
 
 TEST(CryptoTest, CanEncodeAndDecodeUrlSafeBase64) {
-    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::url_safe);
+    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::_url_safe);
     EXPECT_EQ(encoded, "dGVzdA==");
-    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::url_safe);
+    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::_url_safe);
     EXPECT_EQ(decoded, "test");
 }
 
 TEST(CryptoTest, CanEncodeAndDecodeUrlSafeNoPaddingBase64) {
-    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64("test", base64_variants::url_safe_no_padding);
+    std::string encoded = abyss::crypto::coder::getInstance()->encodeBase64(
+            "test",
+            base64_variants::_url_safe_no_padding
+    );
     EXPECT_EQ(encoded, "dGVzdA");
-    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(encoded, base64_variants::url_safe_no_padding);
+    std::string decoded = abyss::crypto::coder::getInstance()->decodeBase64(
+            encoded,
+            base64_variants::_url_safe_no_padding
+    );
     EXPECT_EQ(decoded, "test");
 }
 

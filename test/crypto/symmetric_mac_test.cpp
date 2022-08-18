@@ -8,18 +8,18 @@
 #include <gtest/gtest.h>
 #include "abyss/crypto/crypto.h"
 
-using namespace abyss::crypto;
+using namespace abyss::crypto::symmetric;
 
 TEST(CryptoTest, CanCreateAndVerifyMac) {
-    auto key = abyss::crypto::symmetric_message_authentication::getInstance()->makeKey();
-    auto mac = abyss::crypto::symmetric_message_authentication::getInstance()
+    auto key = symmetric_message_authentication::getInstance()->makeKey();
+    auto mac = symmetric_message_authentication::getInstance()
             ->computeAuthenticationTag("test", key);
 
-    /*std::cout << "key: " << abyss::crypto::encode::base64(key) << std::endl
-              << "mac: " << abyss::crypto::encode::base64(mac) << std::endl
-              << "message: " << abyss::crypto::encode::base64("test") << std::endl;*/
+    /*std::cout << "key: " << abyss::crypto::encode::_base64(key) << std::endl
+              << "mac: " << abyss::crypto::encode::_base64(mac) << std::endl
+              << "_message: " << abyss::crypto::encode::_base64("test") << std::endl;*/
 
-    EXPECT_TRUE(abyss::crypto::symmetric_message_authentication::getInstance()
+    EXPECT_TRUE(symmetric_message_authentication::getInstance()
                         ->verifyAuthenticationTag(mac, "test", key));
 }
 

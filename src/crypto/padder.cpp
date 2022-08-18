@@ -31,13 +31,13 @@ namespace abyss::crypto {
 
         size_t real_length;
 
-        if(sodium_pad(
+        if (sodium_pad(
                 &real_length,
                 buf,
                 plain.size(),
                 block_size,
                 plain_size
-                ) == 0) {
+        ) == 0) {
             ss_.write(reinterpret_cast<const char *>(buf), (long) real_length);
             delete[] buf;
             return ss_.str();
@@ -51,7 +51,7 @@ namespace abyss::crypto {
 
         size_t real_length;
 
-        if(sodium_unpad(
+        if (sodium_unpad(
                 &real_length,
                 reinterpret_cast<const unsigned char *>(padded.c_str()),
                 padded.size(),

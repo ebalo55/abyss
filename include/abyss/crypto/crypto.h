@@ -16,10 +16,10 @@
 #include "abyss/crypto/encryption.h"
 
 namespace abyss::crypto {
-	/**
-	 * Initialize instances of abyss::crypto and all required values/engines
-	 */
-	void init();
+    /**
+     * Initialize instances of abyss::crypto and all required values/engines
+     */
+    void init();
 }
 
 #endif //ABYSS_CRYPTO_H

@@ -11,16 +11,9 @@
 #include <sstream>
 #include "abyss/crypto/random.h"
 #include "abyss/crypto/exceptions.h"
+#include "abyss/crypto/types.h"
 
-namespace abyss::crypto {
-
-    enum symmetric_stream_tag {
-        message = crypto_secretstream_xchacha20poly1305_TAG_MESSAGE,
-        stream_end = crypto_secretstream_xchacha20poly1305_TAG_FINAL,
-        message_end = crypto_secretstream_xchacha20poly1305_TAG_PUSH,
-        rekey = crypto_secretstream_xchacha20poly1305_TAG_REKEY
-    };
-
+namespace abyss::crypto::symmetric {
     class symmetric_stream {
     private:
         std::stringstream ss_;
@@ -31,7 +24,7 @@ namespace abyss::crypto {
         bool is_stream_open_ = false;
         bool is_operating_in_encryption_mode_;
 
-        symmetric_stream_tag tag_keeper_ = message;
+        symmetric_stream_tag tag_keeper_ = _message;
 
         void cleanStream();
 
@@ -69,22 +62,22 @@ namespace abyss::crypto {
         static std::string makeEncryptionKey();
 
         /**
-         * Closes the current stream returning an encrypted closing message.
+         * Closes the current stream returning an encrypted closing _message.
          * NOTE: This method returns an empty string if called from a decryption stream.
-         * NOTE: To avoid empty closing message consider using
+         * NOTE: To avoid empty closing _message consider using
          * @code
-         * write("<your string>", symmetric_stream_tag::stream_end)
+         * write("<your string>", symmetric_stream_tag::_stream_end)
          * @endcode
          * @return
          */
         std::string closeStream();
 
         /**
-         * Closes the current message returning an encrypted closing message.
+         * Closes the current _message returning an encrypted closing _message.
          * NOTE: This method returns an empty string if called from a decryption stream.
-         * NOTE: To avoid empty closing message consider using
+         * NOTE: To avoid empty closing _message consider using
          * @code
-         * write("<your string>", symmetric_stream_tag::message_end)
+         * write("<your string>", symmetric_stream_tag::_message_end)
          * @endcode
          * @return
          */
@@ -109,137 +102,137 @@ namespace abyss::crypto {
         bool isStreamOpen();
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const std::string &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const int &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const float &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const double &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned int &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const long &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned long &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const long long &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @return Binary message encrypted/decrypted
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned long long &message);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const std::string &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const int &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const float &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const double &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned int &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const long &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned long &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const long long &message, symmetric_stream_tag tag);
 
         /**
-         * Write a message to the stream and returns the encrypted or decrypted content depending on the operation mode
+         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
          * @param message Message to encrypt/decrypt
-         * @param tag Tag to append to the message
-         * @return Binary message encrypted/decrypted
+         * @param tag Tag to append to the _message
+         * @return Binary _message encrypted/decrypted
          */
         std::string write(const unsigned long long &message, symmetric_stream_tag tag);
     };

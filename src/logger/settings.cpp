@@ -7,14 +7,14 @@
 namespace abyss::logger {
     // initialize the 'Settings' class static variables
     std::shared_ptr<settings> settings::instance_ = nullptr;
-	
+
     settings::settings() {
         this->setLogLevel(log_level_t::trace);
         this->setLogPattern();
     }
 
     std::shared_ptr<settings> settings::getInstance() {
-		[[unlikely]]
+        [[unlikely]]
         if (instance_ == nullptr) {
             instance_ = std::shared_ptr<settings>(new settings());
         }

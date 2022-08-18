@@ -24,7 +24,7 @@ namespace abyss::logger {
     }
 
     bool generator::registerLogger(const logger_ptr &logger) {
-        raw_logger_ptr raw_logger = (raw_logger_ptr)*logger;
+        raw_logger_ptr raw_logger = (raw_logger_ptr) *logger;
         if (generator::registered_loggers_.contains(raw_logger->name())) {
             return false;
         }
@@ -135,10 +135,10 @@ namespace abyss::logger {
     logger_ptr generator::makeGroup(const std::string &logger_name, const std::vector<logger_ptr> &children) {
         // extract all the sinks from each provided logger
         // NOTE: multiple nested sink groups gets automatically parsed as each distributed sink gets added to the list
-        //  of the sinks, and it automatically handles the log message spreading
+        //  of the sinks, and it automatically handles the log _message spreading
         std::vector<spdlog::sink_ptr> children_sinks = {};
         for (const logger_ptr &child_logger: children) {
-            auto sinks = ((raw_logger_ptr)*child_logger)->sinks();
+            auto sinks = ((raw_logger_ptr) *child_logger)->sinks();
 
             // push each sink in the children vector, this enables concatenation of multiple distributed sinks
             for (const spdlog::sink_ptr &sink: sinks) {

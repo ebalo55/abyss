@@ -37,7 +37,7 @@ namespace abyss::crypto {
         auto buf = new char[size];
         randombytes_buf(buf, size);
 
-        ss_.write(buf, (long)size);
+        ss_.write(buf, (long) size);
         delete[] buf;
         return ss_.str();
     }

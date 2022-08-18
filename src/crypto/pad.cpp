@@ -5,13 +5,13 @@
 #include "abyss/crypto/pad.h"
 
 namespace abyss::crypto::pad {
-	std::string pad(const std::string &plain, size_t block_size) {
-		return padder::getInstance()->pad(plain, block_size);
-	}
-	
-	std::string unpad(const std::string &padded, size_t block_size) {
-		return padder::getInstance()->unpad(padded, block_size);
-	}
+    std::string pad(const std::string &plain, size_t block_size) {
+        return padder::getInstance()->pad(plain, block_size);
+    }
+
+    std::string unpad(const std::string &padded, size_t block_size) {
+        return padder::getInstance()->unpad(padded, block_size);
+    }
 
     std::string pad_4(const std::string &plain) {
         return pad(plain, 4);

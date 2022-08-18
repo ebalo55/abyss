@@ -4,7 +4,7 @@
 
 #include "abyss/crypto/symmetric_encryption.h"
 
-namespace abyss::crypto {
+namespace abyss::crypto::symmetric {
     std::shared_ptr<symmetric_encryption> symmetric_encryption::instance_ = nullptr;
 
     void symmetric_encryption::cleanStream() {
@@ -111,7 +111,7 @@ namespace abyss::crypto {
                 reinterpret_cast<const unsigned char *>(nonce.c_str()),
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
-            // store the encrypted message, delete the buffer and clean the stream
+            // store the encrypted _message, delete the buffer and clean the stream
             ss_.write(reinterpret_cast<const char *>(encrypted_buf), (long) message.size());
             std::string encrypted_message = ss_.str();
             delete[] encrypted_buf;

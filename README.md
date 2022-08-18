@@ -25,7 +25,7 @@ The contribution guide can be found in the Abyss documentation.
 In order to ensure that the Abyss community is welcoming to all, please review and abide by the [Code of Conduct](CONDUCT.md).
 
 ## Security Vulnerabilities
-If you discover a security vulnerability within Abyss, please send a private message to Ebalo55 via GitHub. 
+If you discover a security vulnerability within Abyss, please send a private _message to Ebalo55 via GitHub. 
 All security vulnerabilities will be promptly addressed.
 
 ## License

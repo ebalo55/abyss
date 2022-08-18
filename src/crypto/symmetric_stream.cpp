@@ -4,7 +4,7 @@
 
 #include "abyss/crypto/symmetric_stream.h"
 
-namespace abyss::crypto {
+namespace abyss::crypto::symmetric {
     symmetric_stream::symmetric_stream(const std::string &key)
             : is_operating_in_encryption_mode_(true), is_stream_open_(true) {
         // initialize the encryption mode of the class
@@ -51,8 +51,8 @@ namespace abyss::crypto {
     }
 
     std::string symmetric_stream::closeStream() {
-        if(is_operating_in_encryption_mode_) {
-            std::string response = write("", symmetric_stream_tag::stream_end);
+        if (is_operating_in_encryption_mode_) {
+            std::string response = write("", symmetric_stream_tag::_stream_end);
             is_stream_open_ = false;
             return response;
         }
@@ -60,8 +60,8 @@ namespace abyss::crypto {
     }
 
     std::string symmetric_stream::closeMessage() {
-        if(is_operating_in_encryption_mode_) {
-            return write("", symmetric_stream_tag::message_end);
+        if (is_operating_in_encryption_mode_) {
+            return write("", symmetric_stream_tag::_message_end);
         }
         return "";
     }
@@ -88,8 +88,8 @@ namespace abyss::crypto {
                 0,
                 tag
         ) == 0) {
-            // close the stream immediately if a message is marked with an ending tag
-            if(tag == symmetric_stream_tag::stream_end) {
+            // close the stream immediately if a _message is marked with an ending tag
+            if (tag == symmetric_stream_tag::_stream_end) {
                 is_stream_open_ = false;
             }
 
@@ -138,17 +138,17 @@ namespace abyss::crypto {
             switch (decrypted_tag) {
                 default:
                 case crypto_secretstream_xchacha20poly1305_TAG_MESSAGE:
-                    tag_keeper_ = symmetric_stream_tag::message;
+                    tag_keeper_ = symmetric_stream_tag::_message;
                     break;
                 case crypto_secretstream_xchacha20poly1305_TAG_FINAL:
-                    tag_keeper_ = symmetric_stream_tag::stream_end;
+                    tag_keeper_ = symmetric_stream_tag::_stream_end;
                     is_stream_open_ = false;
                     break;
                 case crypto_secretstream_xchacha20poly1305_TAG_PUSH:
-                    tag_keeper_ = symmetric_stream_tag::message_end;
+                    tag_keeper_ = symmetric_stream_tag::_message_end;
                     break;
                 case crypto_secretstream_xchacha20poly1305_TAG_REKEY:
-                    tag_keeper_ = symmetric_stream_tag::rekey;
+                    tag_keeper_ = symmetric_stream_tag::_rekey;
                     break;
             }
             ss_.write(reinterpret_cast<const char *>(chunk), (long) chunk_size);
@@ -206,7 +206,7 @@ namespace abyss::crypto {
 
     std::string symmetric_stream::write(const std::string &message) {
         if (is_operating_in_encryption_mode_) {
-            return encryptPushingToStream(message, symmetric_stream_tag::message);
+            return encryptPushingToStream(message, symmetric_stream_tag::_message);
         }
         return decryptPushingToStream(message);
     }

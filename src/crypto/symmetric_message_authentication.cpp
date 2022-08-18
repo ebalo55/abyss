@@ -4,7 +4,7 @@
 
 #include "abyss/crypto/symmetric_message_authentication.h"
 
-namespace abyss::crypto {
+namespace abyss::crypto::symmetric {
     std::shared_ptr<symmetric_message_authentication> symmetric_message_authentication::instance_ = nullptr;
 
     void symmetric_message_authentication::cleanStream() {
@@ -42,13 +42,13 @@ namespace abyss::crypto {
         cleanStream();
         auto mac = new unsigned char[crypto_auth_bytes()];
 
-        if(crypto_auth(
+        if (crypto_auth(
                 mac,
                 reinterpret_cast<const unsigned char *>(message.c_str()),
                 message.size(),
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(mac), (long)crypto_auth_bytes());
+            ss_.write(reinterpret_cast<const char *>(mac), (long) crypto_auth_bytes());
             delete[] mac;
             return ss_.str();
         }
@@ -65,6 +65,6 @@ namespace abyss::crypto {
                 reinterpret_cast<const unsigned char *>(message.c_str()),
                 message.size(),
                 reinterpret_cast<const unsigned char *>(key.c_str())
-                ) == 0;
+        ) == 0;
     }
 } // crypto

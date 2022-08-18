@@ -9,7 +9,7 @@
 
 namespace abyss::logger {
     /**
-     * Log a warning message to the default logger
+     * Log a warning _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args
@@ -20,7 +20,7 @@ namespace abyss::logger {
     }
 
     /**
-     * Log a critical message to the default logger
+     * Log a critical _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args
@@ -31,7 +31,7 @@ namespace abyss::logger {
     }
 
     /**
-     * Log an informational message to the default logger
+     * Log an informational _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args
@@ -42,7 +42,7 @@ namespace abyss::logger {
     }
 
     /**
-     * Log a debug message to the default logger
+     * Log a debug _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args
@@ -53,7 +53,7 @@ namespace abyss::logger {
     }
 
     /**
-     * Log an error message to the default logger
+     * Log an error _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args
@@ -64,7 +64,7 @@ namespace abyss::logger {
     }
 
     /**
-     * Log a trace message to the default logger
+     * Log a trace _message to the default logger
      * @tparam Args
      * @param fmt
      * @param args

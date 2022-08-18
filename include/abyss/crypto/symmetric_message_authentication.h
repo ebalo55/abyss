@@ -12,7 +12,7 @@
 #include "abyss/crypto/random.h"
 #include "abyss/crypto/exceptions.h"
 
-namespace abyss::crypto {
+namespace abyss::crypto::symmetric {
     class symmetric_message_authentication {
     private:
         static std::shared_ptr<symmetric_message_authentication> instance_;
@@ -32,7 +32,7 @@ namespace abyss::crypto {
         std::string makeKey();
 
         /**
-         * Compute the authentication tag for the given message
+         * Compute the authentication tag for the given _message
          * @param message Message whose tag will be computed
          * @param key Key used for tag computation
          * @return Message authentication tag
@@ -40,7 +40,7 @@ namespace abyss::crypto {
         std::string computeAuthenticationTag(const std::string &message, const std::string &key);
 
         /**
-         * Verify that the provided authentication tag matches the message and key
+         * Verify that the provided authentication tag matches the _message and key
          * @param tag Message authentication tag
          * @param message Message whose tag will be checked
          * @param key Key used for tag computation

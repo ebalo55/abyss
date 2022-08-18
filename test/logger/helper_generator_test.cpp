@@ -18,10 +18,10 @@ TEST(LoggerTest, AllSinkLoggerExists) {
 
 TEST(LoggerTest, ListsAllSinks) {
     init();
-    EXPECT_EQ(list(), std::vector<std::string>{ ABYSS_LOGGER_ALL_CHANNEL });
+    EXPECT_EQ(list(), std::vector<std::string>{ABYSS_LOGGER_ALL_CHANNEL});
 
     auto stdout_logger = make_stdout_logger("test");
-    EXPECT_EQ(list(), std::vector<std::string>({ ABYSS_LOGGER_ALL_CHANNEL, "test" }));
+    EXPECT_EQ(list(), std::vector<std::string>({ABYSS_LOGGER_ALL_CHANNEL, "test"}));
 }
 
 TEST(LoggerTest, AllGeneratorsReturnPointers) {

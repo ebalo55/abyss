@@ -6,11 +6,11 @@
 
 namespace abyss::crypto::exception {
     const char *b64_decoding_exception::what() const noexcept {
-        return "Unable to decode the provided base64 string.";
+        return "Unable to decode the provided _base64 string.";
     }
 
     const char *hex_decoding_exception::what() const noexcept {
-        return "Unable to decode the provided hex string.";
+        return "Unable to decode the provided _hex string.";
     }
 
     const char *initialization_exception::what() const noexcept {
@@ -33,10 +33,6 @@ namespace abyss::crypto::exception {
         return "Unable to encrypt the stream.";
     }
 
-    const char *symmetric_stream_encryption_still_in_progress_exception::what() const noexcept {
-        return "Unable to get the stream digest, the stream is still open.";
-    }
-
     const char *symmetric_stream_encryption_closed_exception::what() const noexcept {
         return "Unable to push encrypted data to the stream, the stream is closed.";
     }
@@ -55,5 +51,13 @@ namespace abyss::crypto::exception {
 
     const char *symmetric_mac_exception::what() const noexcept {
         return "Unable to compute the authentication tag.";
+    }
+
+    const char *asymmetric_encryption_exception::what() const noexcept {
+        return "Unable to encrypt the message.";
+    }
+
+    const char *asymmetric_decryption_exception::what() const noexcept {
+        return "Unable to decrypt the message.";
     }
 } // abyss::crypto

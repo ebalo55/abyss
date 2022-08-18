@@ -18,7 +18,7 @@ namespace abyss::logger {
         logging_format_t logging_format_;
 
         logger(raw_logger_ptr logger, logging_format_t logging_format) : logger_(std::move(logger)),
-                                                                     logging_format_(logging_format) {}
+                                                                         logging_format_(logging_format) {}
 
         explicit logger(raw_logger_ptr logger) : logger_(std::move(logger)), logging_format_() {}
 
