@@ -68,6 +68,21 @@ namespace abyss::crypto::symmetric::message {
     }
 }
 
+namespace abyss::crypto::symmetric::auth {
+    std::string make_key() {
+        return symmetric_message_authentication::getInstance()->makeKey();
+    }
+
+    std::string compute(const std::string &message, const std::string &key) {
+        return symmetric_message_authentication::getInstance()->computeAuthenticationTag(message, key);
+    }
+
+    bool
+    verify(const std::string &tag, const std::string &message, const std::string &key) {
+        return symmetric_message_authentication::getInstance()->verifyAuthenticationTag(tag, message, key);
+    }
+}
+
 namespace abyss::crypto::symmetric::stream {
     std::string make_encryption_key() {
         return symmetric_stream::makeEncryptionKey();

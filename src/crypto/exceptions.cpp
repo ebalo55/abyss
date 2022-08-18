@@ -53,7 +53,7 @@ namespace abyss::crypto::exception {
         return "Unable to decrypt stream, invalid header detected";
     }
 
-    const char *symmetric_stream_decryption_pending_digested_message_exception::what() const noexcept {
-        return "Unable to decrypt stream, a complete digested message is still pending.";
+    const char *symmetric_mac_exception::what() const noexcept {
+        return "Unable to compute the authentication tag.";
     }
 } // abyss::crypto

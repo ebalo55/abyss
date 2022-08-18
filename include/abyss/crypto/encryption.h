@@ -7,6 +7,7 @@
 
 #include "abyss/crypto/symmetric_encryption.h"
 #include "abyss/crypto/symmetric_stream.h"
+#include "abyss/crypto/symmetric_message_authentication.h"
 
 namespace abyss::crypto {
     namespace symmetric {
@@ -130,6 +131,7 @@ namespace abyss::crypto {
                     const std::string &nonce
             );
         }
+
         namespace stream {
             /**
              * Generates a random valid encryption key
@@ -142,7 +144,7 @@ namespace abyss::crypto {
              * @param key Key used in encryption
              * @return Symmetric stream working in encryption mode
              */
-            static std::shared_ptr<symmetric_stream> make_encryption_stream(const std::string &key);
+            std::shared_ptr<symmetric_stream> make_encryption_stream(const std::string &key);
 
             /**
              * Create an instance of the decryption stream loading the given key
@@ -150,8 +152,33 @@ namespace abyss::crypto {
              * @param key Key used in encryption
              * @return Symmetric stream working in decryption mode
              */
-            static std::shared_ptr<symmetric_stream>
+            std::shared_ptr<symmetric_stream>
             make_decryption_stream(const std::string &header, const std::string &key);
+        }
+
+        namespace auth {
+            /**
+             * Generates a random valid key
+             * @return Key
+             */
+            std::string make_key();
+
+            /**
+             * Compute the authentication tag for the given message
+             * @param message Message whose tag will be computed
+             * @param key Key used for tag computation
+             * @return Message authentication tag
+             */
+            std::string compute(const std::string &message, const std::string &key);
+
+            /**
+             * Verify that the provided authentication tag matches the message and key
+             * @param tag Message authentication tag
+             * @param message Message whose tag will be checked
+             * @param key Key used for tag computation
+             * @return True if verification is successful, false otherwise
+             */
+            bool verify(const std::string &tag, const std::string &message, const std::string &key);
         }
     }
 

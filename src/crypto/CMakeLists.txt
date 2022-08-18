@@ -25,6 +25,7 @@ set(ABYSS_CRYPTO_PUBLIC_API
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_encryption.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/random_generator.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_stream.h
+        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_message_authentication.h
         ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encryption.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
@@ -38,7 +39,8 @@ set(ABYSS_CRYPTO_SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/random.cpp
         ${CMAKE_CURRENT_LIST_DIR}/symmetric_encryption.cpp
         ${CMAKE_CURRENT_LIST_DIR}/encryption.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/symmetric_stream.cpp )
+        ${CMAKE_CURRENT_LIST_DIR}/symmetric_stream.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/symmetric_message_authentication.cpp asymmetric_encryption.cpp asymmetric_encryption.h)
 
 find_package(libsodium REQUIRED)
 

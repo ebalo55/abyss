@@ -80,7 +80,7 @@ namespace abyss::crypto::exception {
         const char * what() const noexcept override;
     };
 
-    class symmetric_stream_decryption_pending_digested_message_exception : std::exception {
+    class symmetric_mac_exception : std::exception {
     public:
         [[nodiscard]]
         const char * what() const noexcept override;

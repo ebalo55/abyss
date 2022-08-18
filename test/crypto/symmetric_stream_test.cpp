@@ -25,13 +25,13 @@ TEST(CryptoTest, CanEncryptAndDecryptStreamUsingSymmetricEncryption) {
     c3 = encryption_stream->write(m3);
     c4 = encryption_stream->closeStream();
 
-    std::cout << "key: " << abyss::crypto::encode::base64(encryption_key) << std::endl
+    /*std::cout << "key: " << abyss::crypto::encode::base64(encryption_key) << std::endl
               << "header: " << abyss::crypto::encode::base64(header) << std::endl
               << "messages: " << std::endl
               << "\t[0]: " << abyss::crypto::encode::base64(c1) << std::endl
               << "\t[1]: " << abyss::crypto::encode::base64(c2) << std::endl
               << "\t[2]: " << abyss::crypto::encode::base64(c3) << std::endl
-              << "\t[3]: " << abyss::crypto::encode::base64(c4) << std::endl;
+              << "\t[3]: " << abyss::crypto::encode::base64(c4) << std::endl;*/
 
     auto decryption_stream = abyss::crypto::symmetric_stream::makeDecryptionStream(header, encryption_key);
 
