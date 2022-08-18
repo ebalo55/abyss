@@ -28,4 +28,32 @@ namespace abyss::crypto::exception {
     const char *symmetric_message_decryption_exception::what() const noexcept {
         return "Unable to decrypt the message.";
     }
+
+    const char *symmetric_stream_encryption_exception::what() const noexcept {
+        return "Unable to encrypt the stream.";
+    }
+
+    const char *symmetric_stream_encryption_still_in_progress_exception::what() const noexcept {
+        return "Unable to get the stream digest, the stream is still open.";
+    }
+
+    const char *symmetric_stream_encryption_closed_exception::what() const noexcept {
+        return "Unable to push encrypted data to the stream, the stream is closed.";
+    }
+
+    const char *symmetric_stream_decryption_exception::what() const noexcept {
+        return "Unable to decrypt the stream.";
+    }
+
+    const char *symmetric_stream_decryption_closed_exception::what() const noexcept {
+        return "Unable to push decrypted data to the stream, the stream is closed.";
+    }
+
+    const char *symmetric_stream_decryption_invalid_header_closed_exception::what() const noexcept {
+        return "Unable to decrypt stream, invalid header detected";
+    }
+
+    const char *symmetric_stream_decryption_pending_digested_message_exception::what() const noexcept {
+        return "Unable to decrypt stream, a complete digested message is still pending.";
+    }
 } // abyss::crypto

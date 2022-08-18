@@ -42,7 +42,7 @@ namespace abyss::logger {
                 group_all_sink_->add_sink(sink);
             }
         }
-            // if the logger name is `ABYSS_LOGGER_ALL_CHANNEL` load the sink into the `group_all_sink_` state variable
+            // if the logger name is `ABYSS_LOGGER_ALL_CHANNEL` load the sink into the `group_all_sink_` state_ variable
             // NOTE: this method is safe as an early return is applied on already registered names and the
             //  `ABYSS_LOGGER_ALL_CHANNEL` name is registered at generator startup
         else {

@@ -71,7 +71,7 @@ install(TARGETS Logger
         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         )
 
-# install header file
+# install encryption_header_ file
 install(FILES ${ABYSS_LOGGER_PUBLIC_API} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/abyss/logger)
 
 # generate and install export file

@@ -43,5 +43,47 @@ namespace abyss::crypto::exception {
         [[nodiscard]]
         const char * what() const noexcept override;
     };
+
+    class symmetric_stream_encryption_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_decryption_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_encryption_still_in_progress_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_encryption_closed_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_decryption_closed_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_decryption_invalid_header_closed_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
+
+    class symmetric_stream_decryption_pending_digested_message_exception : std::exception {
+    public:
+        [[nodiscard]]
+        const char * what() const noexcept override;
+    };
 }
 #endif //ABYSS_EXCEPTIONS_H

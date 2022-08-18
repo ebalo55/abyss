@@ -9,7 +9,6 @@
 #include <sodium.h>
 #include <string>
 #include <sstream>
-#include <tuple>
 #include "abyss/crypto/random.h"
 #include "abyss/crypto/exceptions.h"
 

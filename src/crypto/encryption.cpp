@@ -5,6 +5,14 @@
 #include "abyss/crypto/encryption.h"
 
 namespace abyss::crypto::symmetric::message {
+    std::string make_encryption_key() {
+        return symmetric_encryption::getInstance()->makeEncryptionKey();
+    }
+
+    std::string make_nonce() {
+        return symmetric_encryption::getInstance()->makeNonce();
+    }
+
     encrypted_data_t encrypt(const std::string &message) {
         return symmetric_encryption::getInstance()->encryptMessage(message);
     }
@@ -57,5 +65,20 @@ namespace abyss::crypto::symmetric::message {
             const std::string &nonce
     ) {
         return symmetric_encryption::getInstance()->decryptMessageDetached(authentication_tag, message, key, nonce);
+    }
+}
+
+namespace abyss::crypto::symmetric::stream {
+    std::string make_encryption_key() {
+        return symmetric_stream::makeEncryptionKey();
+    }
+
+    std::shared_ptr<symmetric_stream> make_encryption_stream(const std::string &key) {
+        return symmetric_stream::makeEncryptionStream(key);
+    }
+
+    std::shared_ptr<symmetric_stream>
+    make_decryption_stream(const std::string &header, const std::string &key) {
+        return symmetric_stream::makeDecryptionStream(header, key);
     }
 }

@@ -6,10 +6,23 @@
 #define ABYSS_ENCRYPTION_H
 
 #include "abyss/crypto/symmetric_encryption.h"
+#include "abyss/crypto/symmetric_stream.h"
 
 namespace abyss::crypto {
     namespace symmetric {
         namespace message {
+            /**
+             * Generates a random valid encryption key
+             * @return Encryption key
+             */
+            std::string make_encryption_key();
+
+            /**
+             * Generates a random valid nonce
+             * @return Nonce
+             */
+            std::string make_nonce();
+
             /**
              * Encrypts a message with a random key and a random nonce.
              * @param message Binary message to encrypt
@@ -118,7 +131,27 @@ namespace abyss::crypto {
             );
         }
         namespace stream {
-            // TODO: fill with symmetric functions
+            /**
+             * Generates a random valid encryption key
+             * @return Encryption key
+             */
+            std::string make_encryption_key();
+
+            /**
+             * Create an instance of the encryption stream loading the given key
+             * @param key Key used in encryption
+             * @return Symmetric stream working in encryption mode
+             */
+            static std::shared_ptr<symmetric_stream> make_encryption_stream(const std::string &key);
+
+            /**
+             * Create an instance of the decryption stream loading the given key
+             * @param header Header returned by the encryption process
+             * @param key Key used in encryption
+             * @return Symmetric stream working in decryption mode
+             */
+            static std::shared_ptr<symmetric_stream>
+            make_decryption_stream(const std::string &header, const std::string &key);
         }
     }
 

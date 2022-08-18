@@ -14,6 +14,7 @@ add_executable(abyss_crypto_test
         crypto/padder_test.cpp
         crypto/random_generator_test.cpp
         crypto/symmetric_encryption_test.cpp
+        crypto/symmetric_stream_test.cpp
         )
 target_link_libraries(abyss_crypto_test GTest::gtest_main Abyss::Crypto)
 set_target_properties(abyss_crypto_test PROPERTIES LINKER_LANGUAGE CXX)

@@ -1,5 +1,5 @@
 > **Note**:<br>
-> Current revision is still in draft state, it may be incomplete or contain unstable code that will be changed
+> Current revision is still in draft state_, it may be incomplete or contain unstable code that will be changed
 > without prior communication in a next release
 
 # About Abyss
