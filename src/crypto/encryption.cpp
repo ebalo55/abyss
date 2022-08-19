@@ -97,3 +97,239 @@ namespace abyss::crypto::symmetric::stream {
         return symmetric_stream::makeDecryptionStream(header, key);
     }
 }
+
+namespace abyss::crypto::asymmetric::message {
+    abyss::crypto::asymmetric::keypair_t make_keypair() {
+        return asymmetric_encryption::getInstance()->makeKeypair();
+    }
+
+    abyss::crypto::asymmetric::keypair_t
+    restore_public_key(const std::string &secret_key) {
+        return asymmetric_encryption::getInstance()->restorePublicKey(secret_key);
+    }
+
+    void restore_public_key(abyss::crypto::asymmetric::keypair_t &partial_keypair) {
+        asymmetric_encryption::getInstance()->restorePublicKey(partial_keypair);
+    }
+
+    abyss::crypto::asymmetric::transitional_keypair_t make_encryption_shared_keypair(
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->makeEncryptionSharedKeypair(sender_keypair, receiver_keypair);
+    }
+
+    abyss::crypto::asymmetric::transitional_keypair_t make_decryption_shared_keypair(
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->makeDecryptionSharedKeypair(sender_keypair, receiver_keypair);
+    }
+
+    std::string make_nonce() {
+        return asymmetric_encryption::getInstance()->makeNonce();
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(message, nonce, sender_keypair, receiver_keypair);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const std::string &sender_secret_key,
+            const std::string &receiver_public_key
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(
+                message,
+                nonce,
+                sender_secret_key,
+                receiver_public_key
+        );
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(message, nonce, shared_key_pair);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(message, sender_keypair, receiver_keypair);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const std::string &sender_secret_key,
+            const std::string &receiver_public_key
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(message, sender_secret_key, receiver_public_key);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_t encrypt(
+            const std::string &message,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessage(message, shared_key_pair);
+    }
+
+    std::string decrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const std::string &sender_public_key,
+            const std::string &receiver_secret_key
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessage(
+                message,
+                nonce,
+                sender_public_key,
+                receiver_secret_key
+        );
+    }
+
+    std::string decrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessage(message, nonce, sender_keypair, receiver_keypair);
+    }
+
+    std::string decrypt(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessage(message, nonce, shared_key_pair);
+    }
+
+    std::string decrypt(const abyss::crypto::asymmetric::decryption_data_t &data) {
+        return asymmetric_encryption::getInstance()->decryptMessage(data);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(
+                message,
+                nonce,
+                sender_keypair,
+                receiver_keypair
+        );
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const std::string &nonce,
+            const std::string &sender_secret_key,
+            const std::string &receiver_public_key
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(
+                message,
+                nonce,
+                sender_secret_key,
+                receiver_public_key
+        );
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(message, nonce, shared_key_pair);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(message, sender_keypair, receiver_keypair);
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const std::string &sender_secret_key,
+            const std::string &receiver_public_key
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(
+                message,
+                sender_secret_key,
+                receiver_public_key
+        );
+    }
+
+    abyss::crypto::asymmetric::encrypted_data_detached_t encrypt_detached(
+            const std::string &message,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->encryptMessageDetached(message, shared_key_pair);
+    }
+
+    std::string decrypt_detached(
+            const std::string &authentication_tag,
+            const std::string &message,
+            const std::string &nonce,
+            const std::string &sender_public_key,
+            const std::string &receiver_secret_key
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessageDetached(
+                authentication_tag,
+                message,
+                nonce,
+                sender_public_key,
+                receiver_secret_key
+        );
+    }
+
+    std::string decrypt_detached(
+            const std::string &authentication_tag,
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessageDetached(
+                authentication_tag,
+                message,
+                nonce,
+                sender_keypair,
+                receiver_keypair
+        );
+    }
+
+    std::string decrypt_detached(
+            const std::string &authentication_tag,
+            const std::string &message,
+            const std::string &nonce,
+            const abyss::crypto::asymmetric::transitional_keypair_t &shared_key_pair
+    ) {
+        return asymmetric_encryption::getInstance()->decryptMessageDetached(
+                authentication_tag,
+                message,
+                nonce,
+                shared_key_pair
+        );
+    }
+
+    std::string
+    decrypt_detached(const abyss::crypto::asymmetric::decryption_data_detached_t &data) {
+        return asymmetric_encryption::getInstance()->decryptMessageDetached(data);
+    }
+}

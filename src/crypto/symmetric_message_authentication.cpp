@@ -52,6 +52,8 @@ namespace abyss::crypto::symmetric {
             delete[] mac;
             return ss_.str();
         }
+
+        delete[] mac;
         throw exception::symmetric_mac_exception();
     }
 

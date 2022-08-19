@@ -40,11 +40,11 @@ namespace abyss::crypto::symmetric {
         std::stringstream ss;
 
         // creates the keygen
-        auto key_buf = new unsigned char[crypto_secretstream_xchacha20poly1305_keybytes()];
+        auto key_buf = new unsigned char[crypto_secretstream_xchacha20poly1305_KEYBYTES];
         crypto_secretstream_xchacha20poly1305_keygen(key_buf);
 
         // insert the keygen in the stream and clean memory
-        ss.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretbox_keybytes());
+        ss.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretstream_xchacha20poly1305_KEYBYTES);
         delete[] key_buf;
 
         return ss.str();
@@ -75,7 +75,7 @@ namespace abyss::crypto::symmetric {
         }
 
         // initialize the chunk
-        size_t chunk_size = message.size() + crypto_secretstream_xchacha20poly1305_abytes();
+        size_t chunk_size = message.size() + crypto_secretstream_xchacha20poly1305_ABYTES;
         auto chunk = new unsigned char[chunk_size];
 
         if (crypto_secretstream_xchacha20poly1305_push(
@@ -106,7 +106,7 @@ namespace abyss::crypto::symmetric {
 
         ss_.write(
                 reinterpret_cast<const char *>(encryption_header_),
-                (long) crypto_secretstream_xchacha20poly1305_headerbytes()
+                (long) crypto_secretstream_xchacha20poly1305_HEADERBYTES
         );
         return ss_.str();
     }
@@ -120,7 +120,7 @@ namespace abyss::crypto::symmetric {
         }
 
         // initialize the chunk
-        size_t chunk_size = message.size() - crypto_secretstream_xchacha20poly1305_abytes();
+        size_t chunk_size = message.size() - crypto_secretstream_xchacha20poly1305_ABYTES;
         auto chunk = new unsigned char[chunk_size];
         unsigned char decrypted_tag;
 

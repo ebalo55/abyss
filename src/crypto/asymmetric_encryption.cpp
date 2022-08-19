@@ -20,20 +20,20 @@ namespace abyss::crypto::asymmetric {
     }
 
     keypair_t asymmetric_encryption::makeKeypair() {
-        auto public_key_buf = new unsigned char[crypto_box_publickeybytes()];
-        auto secret_key_buf = new unsigned char[crypto_box_secretkeybytes()];
+        auto public_key_buf = new unsigned char[crypto_box_PUBLICKEYBYTES];
+        auto secret_key_buf = new unsigned char[crypto_box_SECRETKEYBYTES];
 
         crypto_box_keypair(public_key_buf, secret_key_buf);
 
         // cast buf to string
         cleanStream();
-        ss_.write(reinterpret_cast<const char *>(public_key_buf), (long) crypto_box_publickeybytes());
+        ss_.write(reinterpret_cast<const char *>(public_key_buf), (long) crypto_box_PUBLICKEYBYTES);
         std::string public_key = ss_.str();
         delete[] public_key_buf;
 
         // cast buf to string
         cleanStream();
-        ss_.write(reinterpret_cast<const char *>(secret_key_buf), (long) crypto_box_secretkeybytes());
+        ss_.write(reinterpret_cast<const char *>(secret_key_buf), (long) crypto_box_SECRETKEYBYTES);
         std::string secret_key = ss_.str();
         delete[] secret_key_buf;
         cleanStream();
@@ -74,7 +74,7 @@ namespace abyss::crypto::asymmetric {
             const std::string &receiver_public_key
     ) {
         cleanStream();
-        size_t encrypted_size = message.size() + crypto_box_macbytes();
+        size_t encrypted_size = message.size() + crypto_box_MACBYTES;
         auto buf = new unsigned char[encrypted_size];
 
         if (crypto_box_easy(
@@ -139,7 +139,7 @@ namespace abyss::crypto::asymmetric {
     ) {
         cleanStream();
 
-        size_t plain_size = message.size() - crypto_box_macbytes();
+        size_t plain_size = message.size() - crypto_box_MACBYTES;
         auto buf = new unsigned char[plain_size];
 
         if (crypto_box_open_easy(
@@ -182,10 +182,10 @@ namespace abyss::crypto::asymmetric {
 
     keypair_t asymmetric_encryption::restorePublicKey(const std::string &secret_key) {
         cleanStream();
-        auto public_key = new unsigned char[crypto_box_publickeybytes()];
+        auto public_key = new unsigned char[crypto_box_PUBLICKEYBYTES];
         crypto_scalarmult_base(public_key, reinterpret_cast<const unsigned char *>(secret_key.c_str()));
 
-        ss_.write(reinterpret_cast<const char *>(public_key), (long) crypto_box_publickeybytes());
+        ss_.write(reinterpret_cast<const char *>(public_key), (long) crypto_box_PUBLICKEYBYTES);
         delete[] public_key;
         return {.public_key = ss_.str(), .secret_key = secret_key};
     }
@@ -211,7 +211,7 @@ namespace abyss::crypto::asymmetric {
     ) {
         cleanStream();
         auto buf = new unsigned char[message.size()];
-        auto mac = new unsigned char[crypto_box_macbytes()];
+        auto mac = new unsigned char[crypto_box_MACBYTES];
 
         if (crypto_box_detached(
                 buf,
@@ -229,7 +229,7 @@ namespace abyss::crypto::asymmetric {
 
             // stream and clear the mac
             cleanStream();
-            ss_.write(reinterpret_cast<const char *>(mac), (long) crypto_box_macbytes());
+            ss_.write(reinterpret_cast<const char *>(mac), (long) crypto_box_MACBYTES);
             delete[] mac;
 
             return {

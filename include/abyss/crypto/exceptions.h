@@ -92,6 +92,13 @@ namespace abyss::crypto::exception {
         const char *what() const noexcept override;
     };
 
+    class asymmetric_mac_exception
+            : std::exception {
+    public:
+        [[nodiscard]]
+        const char *what() const noexcept override;
+    };
+
     class asymmetric_encryption_exception
             : std::exception {
     public:

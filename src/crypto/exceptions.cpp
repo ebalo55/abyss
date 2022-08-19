@@ -60,4 +60,8 @@ namespace abyss::crypto::exception {
     const char *asymmetric_decryption_exception::what() const noexcept {
         return "Unable to decrypt the message.";
     }
+
+    const char *asymmetric_mac_exception::what() const noexcept {
+        return "Unable to compute the authentication tag.";
+    }
 } // abyss::crypto

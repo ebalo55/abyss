@@ -33,7 +33,7 @@ namespace abyss::crypto::symmetric {
         cleanStream();
 
         // create the encryption buffer
-        size_t encrypted_size = crypto_secretbox_macbytes() + message.size();
+        size_t encrypted_size = message.size() + crypto_secretbox_MACBYTES;
         auto encrypted_buf = new unsigned char[encrypted_size];
 
         if (crypto_secretbox_easy(
@@ -64,7 +64,7 @@ namespace abyss::crypto::symmetric {
         cleanStream();
 
         // create the decryption buffer
-        size_t decrypted_size = message.size() - crypto_secretbox_macbytes();
+        size_t decrypted_size = message.size() - crypto_secretbox_MACBYTES;
         auto decrypted_buf = new unsigned char[decrypted_size];
 
         if (crypto_secretbox_open_easy(
@@ -101,7 +101,7 @@ namespace abyss::crypto::symmetric {
 
         // create the encryption buffer
         auto encrypted_buf = new unsigned char[message.size()];
-        auto tag_buf = new unsigned char[crypto_secretbox_macbytes()];
+        auto tag_buf = new unsigned char[crypto_secretbox_MACBYTES];
 
         if (crypto_secretbox_detached(
                 encrypted_buf,
@@ -118,7 +118,7 @@ namespace abyss::crypto::symmetric {
             cleanStream();
 
             // stream the tag and delete the tag buffer
-            ss_.write(reinterpret_cast<const char *>(tag_buf), (long) crypto_secretbox_macbytes());
+            ss_.write(reinterpret_cast<const char *>(tag_buf), (long) crypto_secretbox_MACBYTES);
             delete[] tag_buf;
             return {ss_.str(), encrypted_message, key, nonce};
         }
@@ -135,11 +135,11 @@ namespace abyss::crypto::symmetric {
         cleanStream();
 
         // creates the keygen
-        auto key_buf = new unsigned char[crypto_secretbox_keybytes()];
+        auto key_buf = new unsigned char[crypto_secretbox_KEYBYTES];
         crypto_secretbox_keygen(key_buf);
 
         // insert the keygen in the stream and clean memory
-        ss_.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretbox_keybytes());
+        ss_.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretbox_KEYBYTES);
         delete[] key_buf;
 
         // store the keygen as string and clean the stream
@@ -150,9 +150,7 @@ namespace abyss::crypto::symmetric {
     }
 
     std::string symmetric_encryption::makeNonce() {
-        cleanStream();
-
-        return random::generate_buffer(crypto_secretbox_noncebytes());
+        return random::generate_buffer(crypto_secretbox_NONCEBYTES);
     }
 
     std::string symmetric_encryption::decryptMessageDetached(const decryption_data_detached_t &data) {

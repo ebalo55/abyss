@@ -56,6 +56,12 @@ namespace abyss::crypto::asymmetric {
     };
     typedef struct encryption_data_detached encrypted_data_detached_t;
     typedef struct encryption_data_detached decryption_data_detached_t;
+
+    struct signature_data {
+        bool verified;
+        std::string message;
+    };
+    typedef struct signature_data signature_data_t;
 }
 
 #endif //ABYSS_TYPES_H

@@ -32,7 +32,7 @@ namespace abyss::crypto::symmetric {
         std::string makeKey();
 
         /**
-         * Compute the authentication tag for the given _message
+         * Compute the authentication tag for the given message
          * @param message Message whose tag will be computed
          * @param key Key used for tag computation
          * @return Message authentication tag
@@ -40,7 +40,7 @@ namespace abyss::crypto::symmetric {
         std::string computeAuthenticationTag(const std::string &message, const std::string &key);
 
         /**
-         * Verify that the provided authentication tag matches the _message and key
+         * Verify that the provided authentication tag matches the message and key
          * @param tag Message authentication tag
          * @param message Message whose tag will be checked
          * @param key Key used for tag computation
