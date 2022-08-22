@@ -66,6 +66,7 @@ namespace abyss::crypto {
         cleanStream();
 
         switch (encoding) {
+            default:
             case _binary:
                 return encoded;
             case _hex:
@@ -79,6 +80,7 @@ namespace abyss::crypto {
         cleanStream();
 
         switch (encoding) {
+            default:
             case _binary:
                 return encoded;
             case _hex:
@@ -116,6 +118,7 @@ namespace abyss::crypto {
         cleanStream();
 
         switch (encoding) {
+            default:
             case _binary:
                 return plain;
             case _hex:
@@ -129,6 +132,7 @@ namespace abyss::crypto {
         cleanStream();
 
         switch (encoding) {
+            default:
             case _binary:
                 return plain;
             case _hex:
