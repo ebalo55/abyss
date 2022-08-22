@@ -15,6 +15,7 @@
 #include "abyss/crypto/random.h"
 #include "abyss/crypto/encryption.h"
 #include "abyss/crypto/hash.h"
+#include "abyss/crypto/key_derivation.h"
 
 namespace abyss::crypto {
     /**

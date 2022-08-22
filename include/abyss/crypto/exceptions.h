@@ -140,5 +140,19 @@ namespace abyss::crypto::exception {
         [[nodiscard]]
         const char *what() const noexcept override;
     };
+
+    class key_derivation_context_size_exception
+            : std::exception {
+    public:
+        [[nodiscard]]
+        const char *what() const noexcept override;
+    };
+
+    class key_derivation_requested_size_exception
+            : std::exception {
+    public:
+        [[nodiscard]]
+        const char *what() const noexcept override;
+    };
 }
 #endif //ABYSS_EXCEPTIONS_H

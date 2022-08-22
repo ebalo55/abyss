@@ -19,12 +19,13 @@ set(ABYSS_CRYPTO_PUBLIC_API
         ../../include/abyss/crypto/symmetric_message_authentication.h ../../include/abyss/crypto/encryption.h
         ../../include/abyss/crypto/asymmetric_encryption.h
         ../../include/abyss/crypto/asymmetric_message_authentication.h ../../include/abyss/crypto/types.h
-        ../../include/abyss/crypto/hash_stream.h ../../include/abyss/crypto/hash.h)
+        ../../include/abyss/crypto/hash_stream.h ../../include/abyss/crypto/hash.h
+        ../../include/abyss/crypto/password_hash.h ../../include/abyss/crypto/key_derivation.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         crypto.cpp encode.cpp exceptions.cpp encode.cpp pad.cpp random.cpp symmetric_encryption.cpp symmetric_stream.cpp
         symmetric_message_authentication.cpp asymmetric_encryption.cpp asymmetric_message_authentication.cpp hash.cpp
-        hash_stream.cpp password_hash.cpp ../../include/abyss/crypto/password_hash.h)
+        hash_stream.cpp password_hash.cpp key_derivation.cpp)
 
 find_package(libsodium REQUIRED)
 
