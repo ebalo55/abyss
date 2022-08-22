@@ -4,33 +4,19 @@
 
 #include "abyss/crypto/symmetric_encryption.h"
 
-namespace abyss::crypto::symmetric {
-    std::shared_ptr<symmetric_encryption> symmetric_encryption::instance_ = nullptr;
-
-    void symmetric_encryption::cleanStream() {
-        ss_.clear();
-        ss_.str("");
-    }
-
-    std::shared_ptr<symmetric_encryption> symmetric_encryption::getInstance() {
-        if (instance_ == nullptr) {
-            instance_ = std::shared_ptr<symmetric_encryption>(new symmetric_encryption());
-        }
-        return instance_;
-    }
-
-    encrypted_data_t symmetric_encryption::encryptMessage(const std::string &message) {
-        return encryptMessage(message, makeEncryptionKey());
+namespace abyss::crypto::symmetric::message {
+    encrypted_data_t encrypt(const std::string &message) {
+        return encrypt(message, make_key());
     }
 
     encrypted_data_t
-    symmetric_encryption::encryptMessage(const std::string &message, const std::string &key) {
-        return encryptMessage(message, key, makeNonce());
+    encrypt(const std::string &message, const std::string &key) {
+        return encrypt(message, key, make_nonce());
     }
 
     encrypted_data_t
-    symmetric_encryption::encryptMessage(const std::string &message, const std::string &key, const std::string &nonce) {
-        cleanStream();
+    encrypt(const std::string &message, const std::string &key, const std::string &nonce) {
+        std::stringstream ss;
 
         // create the encryption buffer
         size_t encrypted_size = message.size() + crypto_secretbox_MACBYTES;
@@ -43,25 +29,26 @@ namespace abyss::crypto::symmetric {
                 reinterpret_cast<const unsigned char *>(nonce.c_str()),
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(encrypted_buf), (long) encrypted_size);
+            ss.write(reinterpret_cast<const char *>(encrypted_buf), (long) encrypted_size);
             delete[] encrypted_buf;
-            return {ss_.str(), key, nonce};
+            return {ss.str(), key, nonce};
         }
+
         delete[] encrypted_buf;
         throw exception::symmetric_message_encryption_exception();
     }
 
-    encrypted_data_t symmetric_encryption::encryptMessage(const encryption_data_t &data) {
-        return encryptMessage(data.message, data.key, data.nonce);
+    encrypted_data_t encrypt(const encryption_data_t &data) {
+        return encrypt(data.message, data.key, data.nonce);
     }
 
-    std::string symmetric_encryption::decryptMessage(const decryption_data_t &data) {
-        return decryptMessage(data.message, data.key, data.nonce);
+    std::string decrypt(const decryption_data_t &data) {
+        return decrypt(data.message, data.key, data.nonce);
     }
 
     std::string
-    symmetric_encryption::decryptMessage(const std::string &message, const std::string &key, const std::string &nonce) {
-        cleanStream();
+    decrypt(const std::string &message, const std::string &key, const std::string &nonce) {
+        std::stringstream ss;
 
         // create the decryption buffer
         size_t decrypted_size = message.size() - crypto_secretbox_MACBYTES;
@@ -74,30 +61,31 @@ namespace abyss::crypto::symmetric {
                 reinterpret_cast<const unsigned char *>(nonce.c_str()),
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(decrypted_buf), (long) decrypted_size);
+            ss.write(reinterpret_cast<const char *>(decrypted_buf), (long) decrypted_size);
             delete[] decrypted_buf;
-            return ss_.str();
+            return ss.str();
         }
+
         delete[] decrypted_buf;
         throw exception::symmetric_message_decryption_exception();
     }
 
-    encrypted_data_detached_t symmetric_encryption::encryptMessageDetached(const std::string &message) {
-        return encryptMessageDetached(message, makeEncryptionKey());
+    encrypted_data_detached_t encrypt_detached(const std::string &message) {
+        return encrypt_detached(message, make_key());
     }
 
     encrypted_data_detached_t
-    symmetric_encryption::encryptMessageDetached(const std::string &message, const std::string &key) {
-        return encryptMessageDetached(message, key, makeNonce());
+    encrypt_detached(const std::string &message, const std::string &key) {
+        return encrypt_detached(message, key, make_nonce());
     }
 
     encrypted_data_detached_t
-    symmetric_encryption::encryptMessageDetached(
+    encrypt_detached(
             const std::string &message,
             const std::string &key,
             const std::string &nonce
     ) {
-        cleanStream();
+        std::stringstream ss;
 
         // create the encryption buffer
         auto encrypted_buf = new unsigned char[message.size()];
@@ -112,49 +100,49 @@ namespace abyss::crypto::symmetric {
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
             // store the encrypted _message, delete the buffer and clean the stream
-            ss_.write(reinterpret_cast<const char *>(encrypted_buf), (long) message.size());
-            std::string encrypted_message = ss_.str();
+            ss.write(reinterpret_cast<const char *>(encrypted_buf), (long) message.size());
+            std::string encrypted_message = ss.str();
             delete[] encrypted_buf;
-            cleanStream();
+            ss.str("");
 
             // stream the tag and delete the tag buffer
-            ss_.write(reinterpret_cast<const char *>(tag_buf), (long) crypto_secretbox_MACBYTES);
+            ss.write(reinterpret_cast<const char *>(tag_buf), (long) crypto_secretbox_MACBYTES);
             delete[] tag_buf;
-            return {ss_.str(), encrypted_message, key, nonce};
+            return {ss.str(), encrypted_message, key, nonce};
         }
         delete[] encrypted_buf;
         delete[] tag_buf;
         throw exception::symmetric_message_encryption_exception();
     }
 
-    encrypted_data_detached_t symmetric_encryption::encryptMessageDetached(const encryption_data_t &data) {
-        return encryptMessageDetached(data.message, data.key, data.nonce);
+    encrypted_data_detached_t encrypt_detached(const encryption_data_t &data) {
+        return encrypt_detached(data.message, data.key, data.nonce);
     }
 
-    std::string symmetric_encryption::makeEncryptionKey() {
-        cleanStream();
+    std::string make_key() {
+        std::stringstream ss;
 
         // creates the keygen
         auto key_buf = new unsigned char[crypto_secretbox_KEYBYTES];
         crypto_secretbox_keygen(key_buf);
 
         // insert the keygen in the stream and clean memory
-        ss_.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretbox_KEYBYTES);
+        ss.write(reinterpret_cast<const char *>(key_buf), (long) crypto_secretbox_KEYBYTES);
         delete[] key_buf;
 
         // store the keygen as string and clean the stream
-        std::string key = ss_.str();
-        cleanStream();
+        std::string key = ss.str();
+        ss.str("");
 
         return key;
     }
 
-    std::string symmetric_encryption::makeNonce() {
+    std::string make_nonce() {
         return random::generate_buffer(crypto_secretbox_NONCEBYTES);
     }
 
-    std::string symmetric_encryption::decryptMessageDetached(const decryption_data_detached_t &data) {
-        return decryptMessageDetached(
+    std::string decrypt_detached(const decryption_data_detached_t &data) {
+        return decrypt_detached(
                 data.authentication_tag,
                 data.message,
                 data.key,
@@ -163,17 +151,16 @@ namespace abyss::crypto::symmetric {
     }
 
     std::string
-    symmetric_encryption::decryptMessageDetached(
+    decrypt_detached(
             const std::string &authentication_tag,
             const std::string &message,
             const std::string &key,
             const std::string &nonce
     ) {
-        cleanStream();
+        std::stringstream ss;
 
         // create the decryption buffer
-        size_t decrypted_size = message.size();
-        auto decrypted_buf = new unsigned char[decrypted_size];
+        auto decrypted_buf = new unsigned char[message.size()];
 
         if (crypto_secretbox_open_detached(
                 decrypted_buf,
@@ -183,10 +170,11 @@ namespace abyss::crypto::symmetric {
                 reinterpret_cast<const unsigned char *>(nonce.c_str()),
                 reinterpret_cast<const unsigned char *>(key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(decrypted_buf), (long) decrypted_size);
+            ss.write(reinterpret_cast<const char *>(decrypted_buf), (long) message.size());
             delete[] decrypted_buf;
-            return ss_.str();
+            return ss.str();
         }
+
         delete[] decrypted_buf;
         throw exception::symmetric_message_decryption_exception();
     }

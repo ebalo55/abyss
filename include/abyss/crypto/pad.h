@@ -7,7 +7,8 @@
 
 #include <string>
 #include <sstream>
-#include "abyss/crypto/padder.h"
+#include <sodium.h>
+#include "exceptions.h"
 
 namespace abyss::crypto::pad {
     /**

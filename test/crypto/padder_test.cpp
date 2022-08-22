@@ -11,9 +11,9 @@
 using namespace abyss::crypto;
 
 TEST(CryptoTest, CanPadAndUnpadStrings) {
-    std::string padded = abyss::crypto::padder::getInstance()->pad("test", 16);
+    std::string padded = abyss::crypto::pad::pad("test", 16);
     EXPECT_EQ(abyss::crypto::encode::hex(padded), "74657374800000000000000000000000");
-    std::string unpadded = abyss::crypto::padder::getInstance()->unpad(padded, 16);
+    std::string unpadded = abyss::crypto::pad::unpad(padded, 16);
     EXPECT_EQ(unpadded, "test");
 }
 

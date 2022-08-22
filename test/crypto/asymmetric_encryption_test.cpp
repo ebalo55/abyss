@@ -8,31 +8,26 @@
 #include <gtest/gtest.h>
 #include "abyss/crypto/crypto.h"
 
-using namespace abyss::crypto::asymmetric;
-
 TEST(CryptoTest, CanEncryptAndDecryptSingleMessagesUsingAsymmetricEncryption) {
-    auto sender_kp = asymmetric_encryption::getInstance()->makeKeypair();
-    auto receiver_kp = asymmetric_encryption::getInstance()->makeKeypair();
+    auto sender_kp = abyss::crypto::asymmetric::message::make_keypair();
+    auto receiver_kp = abyss::crypto::asymmetric::message::make_keypair();
 
-    auto encrypted_message = asymmetric_encryption::getInstance()
-            ->encryptMessage("test", sender_kp, receiver_kp);
+    auto encrypted_message = abyss::crypto::asymmetric::message::encrypt("test", sender_kp, receiver_kp);
 
     /*std::cout << "sender secret key: " << abyss::crypto::encode::base64(encrypted_message.keypair.secret_key) << std::endl
               << "receiver public key: " << abyss::crypto::encode::base64(encrypted_message.keypair.public_key) << std::endl
               << "nonce: " << abyss::crypto::encode::base64(encrypted_message.nonce) << std::endl
               << "message: " << abyss::crypto::encode::base64(encrypted_message.message) << std::endl;*/
 
-    auto decrypted_message = asymmetric_encryption::getInstance()
-            ->decryptMessage(encrypted_message);
+    auto decrypted_message = abyss::crypto::asymmetric::message::decrypt(encrypted_message);
     EXPECT_EQ(decrypted_message, "test");
 }
 
 TEST(CryptoTest, CanEncryptAndDecryptSingleMessagesUsingAsymmetricEncryptionDetached) {
-    auto sender_kp = asymmetric_encryption::getInstance()->makeKeypair();
-    auto receiver_kp = asymmetric_encryption::getInstance()->makeKeypair();
+    auto sender_kp = abyss::crypto::asymmetric::message::make_keypair();
+    auto receiver_kp = abyss::crypto::asymmetric::message::make_keypair();
 
-    auto encrypted_message = asymmetric_encryption::getInstance()
-            ->encryptMessageDetached("test", sender_kp, receiver_kp);
+    auto encrypted_message = abyss::crypto::asymmetric::message::encrypt_detached("test", sender_kp, receiver_kp);
 
     /*std::cout << "sender secret key: " << abyss::crypto::encode::base64(encrypted_message.keypair.secret_key) << std::endl
               << "receiver public key: " << abyss::crypto::encode::base64(encrypted_message.keypair.public_key) << std::endl
@@ -40,38 +35,34 @@ TEST(CryptoTest, CanEncryptAndDecryptSingleMessagesUsingAsymmetricEncryptionDeta
               << "mac: " << abyss::crypto::encode::base64(encrypted_message.authentication_tag) << std::endl
               << "message: " << abyss::crypto::encode::base64(encrypted_message.message) << std::endl;*/
 
-    auto decrypted_message = asymmetric_encryption::getInstance()
-            ->decryptMessageDetached(encrypted_message);
+    auto decrypted_message = abyss::crypto::asymmetric::message::decrypt_detached(encrypted_message);
     EXPECT_EQ(decrypted_message, "test");
 }
 
 TEST(CryptoTest, CanEncryptAndDecryptBinarySingleMessagesUsingAsymmetricEncryption) {
-    auto sender_kp = asymmetric_encryption::getInstance()->makeKeypair();
-    auto receiver_kp = asymmetric_encryption::getInstance()->makeKeypair();
+    auto sender_kp = abyss::crypto::asymmetric::message::make_keypair();
+    auto receiver_kp = abyss::crypto::asymmetric::message::make_keypair();
 
     std::string binary_string = abyss::crypto::random::generate_buffer(128);
 
-    auto encrypted_message = asymmetric_encryption::getInstance()
-            ->encryptMessage(binary_string, sender_kp, receiver_kp);
+    auto encrypted_message = abyss::crypto::asymmetric::message::encrypt(binary_string, sender_kp, receiver_kp);
 
     /*std::cout << "sender secret key: " << abyss::crypto::encode::base64(encrypted_message.keypair.secret_key) << std::endl
               << "receiver public key: " << abyss::crypto::encode::base64(encrypted_message.keypair.public_key) << std::endl
               << "nonce: " << abyss::crypto::encode::base64(encrypted_message.nonce) << std::endl
               << "message: " << abyss::crypto::encode::base64(encrypted_message.message) << std::endl;*/
 
-    auto decrypted_message = asymmetric_encryption::getInstance()
-            ->decryptMessage(encrypted_message);
+    auto decrypted_message = abyss::crypto::asymmetric::message::decrypt(encrypted_message);
     EXPECT_EQ(decrypted_message, binary_string);
 }
 
 TEST(CryptoTest, CanEncryptAndDecryptBinarySingleMessagesUsingAsymmetricEncryptionDetached) {
-    auto sender_kp = asymmetric_encryption::getInstance()->makeKeypair();
-    auto receiver_kp = asymmetric_encryption::getInstance()->makeKeypair();
+    auto sender_kp = abyss::crypto::asymmetric::message::make_keypair();
+    auto receiver_kp = abyss::crypto::asymmetric::message::make_keypair();
 
     std::string binary_string = abyss::crypto::random::generate_buffer(128);
 
-    auto encrypted_message = asymmetric_encryption::getInstance()
-            ->encryptMessageDetached(binary_string, sender_kp, receiver_kp);
+    auto encrypted_message = abyss::crypto::asymmetric::message::encrypt_detached(binary_string, sender_kp, receiver_kp);
 
     /*std::cout << "sender secret key: " << abyss::crypto::encode::base64(encrypted_message.keypair.secret_key) << std::endl
               << "receiver public key: " << abyss::crypto::encode::base64(encrypted_message.keypair.public_key) << std::endl
@@ -79,8 +70,7 @@ TEST(CryptoTest, CanEncryptAndDecryptBinarySingleMessagesUsingAsymmetricEncrypti
               << "mac: " << abyss::crypto::encode::base64(encrypted_message.authentication_tag) << std::endl
               << "message: " << abyss::crypto::encode::base64(encrypted_message.message) << std::endl;*/
 
-    auto decrypted_message = asymmetric_encryption::getInstance()
-            ->decryptMessageDetached(encrypted_message);
+    auto decrypted_message = abyss::crypto::asymmetric::message::decrypt_detached(encrypted_message);
     EXPECT_EQ(decrypted_message, binary_string);
 }
 

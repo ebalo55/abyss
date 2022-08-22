@@ -5,7 +5,8 @@
 #ifndef ABYSS_RANDOM_H
 #define ABYSS_RANDOM_H
 
-#include "abyss/crypto/random_generator.h"
+#include <sodium.h>
+#include <sstream>
 
 namespace abyss::crypto::random {
     /**

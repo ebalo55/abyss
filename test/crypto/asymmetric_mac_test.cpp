@@ -8,12 +8,9 @@
 #include <gtest/gtest.h>
 #include "abyss/crypto/crypto.h"
 
-using namespace abyss::crypto::asymmetric;
-
 TEST(CryptoTest, CanCreateAndVerifyAsymmetricMac) {
-    auto key = asymmetric_message_authentication::getInstance()->makeKeypair();
-    auto mac = asymmetric_message_authentication::getInstance()
-            ->signMessage("test", key);
+    auto key = abyss::crypto::asymmetric::auth::make_keypair();
+    auto mac = abyss::crypto::asymmetric::auth::sign("test", key);
 
     /*std::cout << "secret key: " << abyss::crypto::encode::base64(key.secret_key) << std::endl
               << "public key: " << abyss::crypto::encode::base64(key.public_key) << std::endl
@@ -21,24 +18,21 @@ TEST(CryptoTest, CanCreateAndVerifyAsymmetricMac) {
               << "message: " << abyss::crypto::encode::base64("test") << std::endl;*/
 
 
-    auto signature_result = asymmetric_message_authentication::getInstance()
-            ->verifyMessage(mac, key);
+    auto signature_result = abyss::crypto::asymmetric::auth::verify(mac, key);
     EXPECT_TRUE(signature_result.verified);
     EXPECT_EQ(signature_result.message, "test");
 }
 
 TEST(CryptoTest, CanCreateAndVerifyAsymmetricMacDetached) {
-    auto key = asymmetric_message_authentication::getInstance()->makeKeypair();
-    auto mac = asymmetric_message_authentication::getInstance()
-            ->signMessageDetached("test", key);
+    auto key = abyss::crypto::asymmetric::auth::make_keypair();
+    auto mac = abyss::crypto::asymmetric::auth::sign_detached("test", key);
 
     /*std::cout << "secret key: " << abyss::crypto::encode::base64(key.secret_key) << std::endl
               << "public key: " << abyss::crypto::encode::base64(key.public_key) << std::endl
               << "mac: " << abyss::crypto::encode::base64(mac) << std::endl
               << "message: " << abyss::crypto::encode::base64("test") << std::endl;*/
 
-    auto signature_result = asymmetric_message_authentication::getInstance()
-            ->verifyMessageDetached(mac, "test", key);
+    auto signature_result = abyss::crypto::asymmetric::auth::verify_detached(mac, "test", key);
     EXPECT_TRUE(signature_result);
 }
 

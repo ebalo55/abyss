@@ -4,47 +4,32 @@
 
 #include "abyss/crypto/asymmetric_message_authentication.h"
 
-namespace abyss::crypto::asymmetric {
-    std::shared_ptr<asymmetric_message_authentication> asymmetric_message_authentication::instance_ = nullptr;
-
-    void asymmetric_message_authentication::cleanStream() {
-        ss_.clear();
-        ss_.str("");
-    }
-
-    std::shared_ptr<asymmetric_message_authentication> asymmetric_message_authentication::getInstance() {
-        if (instance_ == nullptr) {
-            instance_ = std::shared_ptr<asymmetric_message_authentication>(new asymmetric_message_authentication());
-        }
-        return instance_;
-    }
-
-    keypair_t asymmetric_message_authentication::makeKeypair() {
+namespace abyss::crypto::asymmetric::auth {
+    keypair_t make_keypair() {
+        std::stringstream ss;
         auto public_key_buf = new unsigned char[crypto_sign_PUBLICKEYBYTES];
         auto secret_key_buf = new unsigned char[crypto_sign_SECRETKEYBYTES];
 
         crypto_sign_keypair(public_key_buf, secret_key_buf);
 
         // cast buf to string
-        cleanStream();
-        ss_.write(reinterpret_cast<const char *>(public_key_buf), (long) crypto_sign_PUBLICKEYBYTES);
-        std::string public_key = ss_.str();
+        ss.write(reinterpret_cast<const char *>(public_key_buf), (long) crypto_sign_PUBLICKEYBYTES);
+        std::string public_key = ss.str();
         delete[] public_key_buf;
-        cleanStream();
+        ss.str("");
 
         // cast buf to string
-        ss_.write(reinterpret_cast<const char *>(secret_key_buf), (long) crypto_sign_SECRETKEYBYTES);
-        std::string secret_key = ss_.str();
+        ss.write(reinterpret_cast<const char *>(secret_key_buf), (long) crypto_sign_SECRETKEYBYTES);
+        std::string secret_key = ss.str();
         delete[] secret_key_buf;
-        cleanStream();
+        ss.str("");
 
         return {.public_key = public_key, .secret_key = secret_key};
     }
 
     std::string
-    asymmetric_message_authentication::signMessage(const std::string &message, const std::string &secret_key) {
-        cleanStream();
-
+    sign(const std::string &message, const std::string &secret_key) {
+        std::stringstream ss;
         size_t message_size = message.size() + crypto_sign_BYTES;
         auto signed_message = new unsigned char[message_size];
 
@@ -55,20 +40,20 @@ namespace abyss::crypto::asymmetric {
                 message.size(),
                 reinterpret_cast<const unsigned char *>(secret_key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(signed_message), (long) message_size);
+            ss.write(reinterpret_cast<const char *>(signed_message), (long) message_size);
             delete[] signed_message;
-            return ss_.str();
+            return ss.str();
         }
 
         delete[] signed_message;
         throw exception::asymmetric_mac_exception();
     }
 
-    signature_data_t asymmetric_message_authentication::verifyMessage(
+    signature_data_t verify(
             const std::string &message,
             const std::string &public_key
     ) {
-        cleanStream();
+        std::stringstream ss;
 
         size_t message_size = message.size() - crypto_sign_BYTES;
         auto unsigned_message = new unsigned char[message_size];
@@ -80,11 +65,11 @@ namespace abyss::crypto::asymmetric {
                 message.size(),
                 reinterpret_cast<const unsigned char *>(public_key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(unsigned_message), (long) message_size);
+            ss.write(reinterpret_cast<const char *>(unsigned_message), (long) message_size);
             delete[] unsigned_message;
             return {
                     .verified = true,
-                    .message = ss_.str()
+                    .message = ss.str()
             };
         }
 
@@ -96,8 +81,8 @@ namespace abyss::crypto::asymmetric {
     }
 
     std::string
-    asymmetric_message_authentication::signMessageDetached(const std::string &message, const std::string &secret_key) {
-        cleanStream();
+    sign_detached(const std::string &message, const std::string &secret_key) {
+        std::stringstream ss;
 
         auto tag = new unsigned char[crypto_sign_BYTES];
 
@@ -108,16 +93,16 @@ namespace abyss::crypto::asymmetric {
                 message.size(),
                 reinterpret_cast<const unsigned char *>(secret_key.c_str())
         ) == 0) {
-            ss_.write(reinterpret_cast<const char *>(tag), (long) crypto_sign_BYTES);
+            ss.write(reinterpret_cast<const char *>(tag), (long) crypto_sign_BYTES);
             delete[] tag;
-            return ss_.str();
+            return ss.str();
         }
 
         delete[] tag;
         throw exception::asymmetric_mac_exception();
     }
 
-    bool asymmetric_message_authentication::verifyMessageDetached(
+    bool verify_detached(
             const std::string &tag,
             const std::string &message,
             const std::string &public_key
@@ -131,27 +116,27 @@ namespace abyss::crypto::asymmetric {
     }
 
     std::string
-    asymmetric_message_authentication::signMessage(const std::string &message, const keypair_t &sender_keypair) {
-        return signMessage(message, sender_keypair.secret_key);
+    sign(const std::string &message, const keypair_t &sender_keypair) {
+        return sign(message, sender_keypair.secret_key);
     }
 
     signature_data_t
-    asymmetric_message_authentication::verifyMessage(const std::string &message, const keypair_t &receiver_keypair) {
-        return verifyMessage(message, receiver_keypair.public_key);
+    verify(const std::string &message, const keypair_t &receiver_keypair) {
+        return verify(message, receiver_keypair.public_key);
     }
 
-    std::string asymmetric_message_authentication::signMessageDetached(
+    std::string sign_detached(
             const std::string &message,
             const keypair_t &sender_keypair
     ) {
-        return signMessageDetached(message, sender_keypair.secret_key);
+        return sign_detached(message, sender_keypair.secret_key);
     }
 
-    bool asymmetric_message_authentication::verifyMessageDetached(
+    bool verify_detached(
             const std::string &tag,
             const std::string &message,
             const keypair_t &receiver_keypair
     ) {
-        return verifyMessageDetached(tag, message, receiver_keypair.public_key);
+        return verify_detached(tag, message, receiver_keypair.public_key);
     }
 } // asymmetric
