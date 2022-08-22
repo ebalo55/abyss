@@ -64,4 +64,12 @@ namespace abyss::crypto::asymmetric {
     typedef struct signature_data signature_data_t;
 }
 
+namespace abyss::crypto::hash {
+    enum security_level {
+        minimum,
+        average,
+        maximum,
+    };
+}
+
 #endif //ABYSS_TYPES_H

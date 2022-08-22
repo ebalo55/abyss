@@ -12,35 +12,19 @@ set(libsodium_DIR ${CMAKE_BINARY_DIR})
 
 # source definitions
 set(ABYSS_CRYPTO_PUBLIC_API
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/version.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/version.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/crypto.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encodings.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encode.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/pad.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/random.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/exceptions.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_encryption.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_stream.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/symmetric_message_authentication.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/encryption.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/asymmetric_encryption.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/asymmetric_message_authentication.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/types.h
-        ${CMAKE_CURRENT_LIST_DIR}/../../include/abyss/crypto/hash.h)
+        ../../include/abyss/version.h ../../include/abyss/crypto/version.h ../../include/abyss/crypto/crypto.h
+        ../../include/abyss/crypto/encodings.h ../../include/abyss/crypto/encode.h ../../include/abyss/crypto/pad.h
+        ../../include/abyss/crypto/random.h ../../include/abyss/crypto/exceptions.h
+        ../../include/abyss/crypto/symmetric_encryption.h ../../include/abyss/crypto/symmetric_stream.h
+        ../../include/abyss/crypto/symmetric_message_authentication.h ../../include/abyss/crypto/encryption.h
+        ../../include/abyss/crypto/asymmetric_encryption.h
+        ../../include/abyss/crypto/asymmetric_message_authentication.h ../../include/abyss/crypto/types.h
+        ../../include/abyss/crypto/hash_stream.h ../../include/abyss/crypto/hash.h)
 set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
-        ${CMAKE_CURRENT_LIST_DIR}/crypto.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/encode.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/exceptions.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/encode.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/pad.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/random.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/symmetric_encryption.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/symmetric_stream.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/symmetric_message_authentication.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/asymmetric_encryption.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/asymmetric_message_authentication.cpp )
+        crypto.cpp encode.cpp exceptions.cpp encode.cpp pad.cpp random.cpp symmetric_encryption.cpp symmetric_stream.cpp
+        symmetric_message_authentication.cpp asymmetric_encryption.cpp asymmetric_message_authentication.cpp hash.cpp
+        hash_stream.cpp)
 
 find_package(libsodium REQUIRED)
 
