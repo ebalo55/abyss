@@ -24,7 +24,7 @@ set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         crypto.cpp encode.cpp exceptions.cpp encode.cpp pad.cpp random.cpp symmetric_encryption.cpp symmetric_stream.cpp
         symmetric_message_authentication.cpp asymmetric_encryption.cpp asymmetric_message_authentication.cpp hash.cpp
-        hash_stream.cpp)
+        hash_stream.cpp password_hash.cpp ../../include/abyss/crypto/password_hash.h)
 
 find_package(libsodium REQUIRED)
 

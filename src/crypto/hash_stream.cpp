@@ -49,6 +49,8 @@ namespace abyss::crypto::hash {
 
         crypto_generichash_final(&state_, hash, hash_size_);
         ss.write(reinterpret_cast<const char *>(hash), hash_size_);
+        delete[] hash;
+
         return ss.str();
     }
 

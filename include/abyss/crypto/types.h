@@ -72,4 +72,48 @@ namespace abyss::crypto::hash {
     };
 }
 
+namespace abyss::crypto::hash::password {
+    enum operation_limit {
+        /**
+         * Recommended for online operations.
+         * Requires 64 MiB of dedicated RAM.
+         */
+        _ops_interactive = crypto_pwhash_OPSLIMIT_INTERACTIVE,
+        _ops_max = crypto_pwhash_OPSLIMIT_MAX,
+        _ops_min = crypto_pwhash_OPSLIMIT_MIN,
+        /**
+         * Requires 256 MiB of dedicated RAM.
+         * Takes about 0.7 seconds on a 2.8 GHz Core i7 CPU
+         */
+        _ops_moderate = crypto_pwhash_OPSLIMIT_MODERATE,
+        /**
+         * Recommended for highly sensitive data and non-interactive operations.
+         * Requires 1024 MiB of dedicated RAM.
+         * Takes about 3.5 seconds on a 2.8 GHz Core i7 CPU
+         */
+        _ops_sensitive = crypto_pwhash_OPSLIMIT_SENSITIVE,
+    };
+
+    enum memory_limit {
+        /**
+         * Recommended for online operations.
+         * Requires 64 MiB of dedicated RAM.
+         */
+        _memory_interactive = crypto_pwhash_MEMLIMIT_INTERACTIVE,
+        _memory_max = crypto_pwhash_MEMLIMIT_MAX,
+        _memory_min = crypto_pwhash_MEMLIMIT_MIN,
+        /**
+         * Requires 256 MiB of dedicated RAM.
+         * Takes about 0.7 seconds on a 2.8 GHz Core i7 CPU
+         */
+        _memory_moderate = crypto_pwhash_MEMLIMIT_MODERATE,
+        /**
+         * Recommended for highly sensitive data and non-interactive operations.
+         * Requires 1024 MiB of dedicated RAM.
+         * Takes about 3.5 seconds on a 2.8 GHz Core i7 CPU
+         */
+        _memory_sensitive = crypto_pwhash_MEMLIMIT_SENSITIVE,
+    };
+}
+
 #endif //ABYSS_TYPES_H

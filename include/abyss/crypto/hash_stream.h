@@ -29,80 +29,74 @@ namespace abyss::crypto::hash {
         hash_stream();
 
         /**
-         * Closes the current stream returning an encrypted closing _message.
-         * NOTE: This method returns an empty string if called from a decryption stream.
-         * NOTE: To avoid empty closing _message consider using
-         * @code
-         * write("<your string>", symmetric_stream_tag::_stream_end)
-         * @endcode
+         * Closes the current stream returning an hashed message.
          * @return
          */
         std::string closeStream();
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const std::string &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const int &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const float &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const double &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const unsigned int &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const long &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const unsigned long &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const long long &message);
 
         /**
-         * Write a _message to the stream and returns the encrypted or decrypted content depending on the operation mode
-         * @param message Message to encrypt/decrypt
+         * Write a message to the stream
+         * @param message Message to hash
          * @return True if hash stream succeeded, false otherwise
          */
         bool write(const unsigned long long &message);
     };
-
 }
 
 #endif //ABYSS_HASH_STREAM_H

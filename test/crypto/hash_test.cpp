@@ -51,9 +51,6 @@ TEST(CryptoTest, CanHashWithRandomKey) {
 
     auto h2 = abyss::crypto::hash::generic_hash("test", abyss::crypto::hash::make_salt(abyss::crypto::hash::maximum));
     EXPECT_NE(h2, h1);
-
-    auto h3 = abyss::crypto::hash::generic_hash("test", abyss::crypto::random::generate_buffer(128));
-    EXPECT_NE(h3, h1);
 }
 
 TEST(CryptoTest, CanHashWithLowSecurityLevel) {

@@ -52,16 +52,21 @@ namespace abyss::crypto::hash {
 
         auto hash = new unsigned char[hash_size];
 
-        crypto_generichash(
+        if(crypto_generichash(
                 hash,
                 hash_size,
                 reinterpret_cast<const unsigned char *>(message.c_str()),
                 message.size(),
                 reinterpret_cast<const unsigned char *>(salt.c_str()),
                 salt.size()
-        );
-        ss.write(reinterpret_cast<const char *>(hash), hash_size);
+        ) == 0) {
+            ss.write(reinterpret_cast<const char *>(hash), hash_size);
+            delete[] hash;
 
-        return ss.str();
+            return ss.str();
+        }
+
+        delete[] hash;
+        throw exception::generic_hash_exception();
     }
 }

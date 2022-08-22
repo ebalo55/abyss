@@ -3,6 +3,8 @@
 //
 
 #include "abyss/crypto/exceptions.h"
+#include <fmt/format.h>
+#include <sodium/crypto_pwhash.h>
 
 namespace abyss::crypto::exception {
     const char *b64_decoding_exception::what() const noexcept {
@@ -63,5 +65,21 @@ namespace abyss::crypto::exception {
 
     const char *asymmetric_mac_exception::what() const noexcept {
         return "Unable to compute the authentication tag.";
+    }
+
+    const char *generic_hash_exception::what() const noexcept {
+        return "Unable to compute the generic hash, this is commonly due to an out of memory error.";
+    }
+
+    const char *key_derivation_exception::what() const noexcept {
+        return "Unable to compute the derived key, this is commonly due to an out of memory error.";
+    }
+
+    const char *key_derivation_size_exception::what() const noexcept {
+        return "Invalid key size requested for derivation, the value must be between crypto_pwhash_BYTES_MIN and crypto_pwhash_BYTES_MAX";
+    }
+
+    const char *password_hash_exception::what() const noexcept {
+        return "Unable to compute the hashed password, this is commonly due to an out of memory error.";
     }
 } // abyss::crypto
