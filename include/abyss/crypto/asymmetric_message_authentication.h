@@ -27,7 +27,7 @@ namespace abyss::crypto::asymmetric {
         static std::shared_ptr<asymmetric_message_authentication> getInstance();
 
         /**
-         * Generates a random valid key
+         * Generates a random valid keypair
          * @return Key
          */
         keypair_t makeKeypair();

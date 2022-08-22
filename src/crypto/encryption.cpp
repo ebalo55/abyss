@@ -333,3 +333,59 @@ namespace abyss::crypto::asymmetric::message {
         return asymmetric_encryption::getInstance()->decryptMessageDetached(data);
     }
 }
+
+namespace abyss::crypto::asymmetric::auth {
+    keypair_t make_key() {
+        return asymmetric_message_authentication::getInstance()->makeKeypair();
+    }
+
+    std::string sign(const std::string &message, const std::string &secret_key) {
+        return asymmetric_message_authentication::getInstance()->signMessage(message, secret_key);
+    }
+
+    std::string sign(
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair
+    ) {
+        return asymmetric_message_authentication::getInstance()->signMessage(message, sender_keypair);
+    }
+
+    abyss::crypto::asymmetric::signature_data_t
+    verify(const std::string &message, const std::string &public_key) {
+        return asymmetric_message_authentication::getInstance()->verifyMessage(message, public_key);
+    }
+
+    abyss::crypto::asymmetric::signature_data_t verify(
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_message_authentication::getInstance()->verifyMessage(message, receiver_keypair);
+    }
+
+    std::string sign_detached(
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &sender_keypair
+    ) {
+        return asymmetric_message_authentication::getInstance()->signMessageDetached(message, sender_keypair);
+    }
+
+    std::string sign_detached(const std::string &message, const std::string &secret_key) {
+        return asymmetric_message_authentication::getInstance()->signMessageDetached(message, secret_key);
+    }
+
+    bool verify_detached(
+            const std::string &tag,
+            const std::string &message,
+            const abyss::crypto::asymmetric::keypair_t &receiver_keypair
+    ) {
+        return asymmetric_message_authentication::getInstance()->verifyMessageDetached(tag, message, receiver_keypair);
+    }
+
+    bool verify_detached(
+            const std::string &tag,
+            const std::string &message,
+            const std::string &public_key
+    ) {
+        return asymmetric_message_authentication::getInstance()->verifyMessageDetached(tag, message, public_key);
+    }
+}
