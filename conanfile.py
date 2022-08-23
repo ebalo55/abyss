@@ -84,7 +84,6 @@ class ConanAbyss(ConanFile):
     def package_info(self):
         if not self.settings.os == "Windows":
             self.cpp_info.libs = [
-                "libLogger.a"
-            ] if not self.options.shared else [
-                "libLogger.so"
+                "Logger",
+                "Crypto",
             ]
