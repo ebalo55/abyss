@@ -32,7 +32,7 @@ class ConanAbyss(ConanFile):
     generators = "cmake", "cmake_find_package", "cmake_find_package_multi"
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "src/*", "include/*", "cmake/*"
+    exports_sources = "CMakeLists.txt", "src/*", "include/*", "cmake/*", "test/*"
     requires = "spdlog/1.10.0", "fmt/8.1.1", "gtest/1.12.1", "libsodium/1.0.18"
 
     _cmake = None
