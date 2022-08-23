@@ -116,4 +116,16 @@ namespace abyss::crypto::hash::password {
     };
 }
 
+namespace abyss::crypto::key_exchange {
+    struct keypair_t {
+        std::string public_key;
+        std::string secret_key;
+    };
+
+    struct exchanged_keypair_t {
+        std::string receiving_key;
+        std::string sending_key;
+    };
+}
+
 #endif //ABYSS_TYPES_H

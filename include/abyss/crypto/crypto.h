@@ -16,6 +16,7 @@
 #include "abyss/crypto/encryption.h"
 #include "abyss/crypto/hash.h"
 #include "abyss/crypto/key_derivation.h"
+#include "abyss/crypto/key_exchange.h"
 
 namespace abyss::crypto {
     /**

@@ -25,7 +25,7 @@ set(ABYSS_CRYPTO_SOURCES
         ${ABYSS_CRYPTO_PUBLIC_API}
         crypto.cpp encode.cpp exceptions.cpp encode.cpp pad.cpp random.cpp symmetric_encryption.cpp symmetric_stream.cpp
         symmetric_message_authentication.cpp asymmetric_encryption.cpp asymmetric_message_authentication.cpp hash.cpp
-        hash_stream.cpp password_hash.cpp key_derivation.cpp)
+        hash_stream.cpp password_hash.cpp key_derivation.cpp key_exchange.cpp ../../include/abyss/crypto/key_exchange.h)
 
 find_package(libsodium REQUIRED)
 

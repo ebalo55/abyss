@@ -21,6 +21,7 @@ add_executable(abyss_crypto_test
         crypto/hash_test.cpp
         crypto/password_hash_test.cpp
         crypto/key_derivation_test.cpp
+        crypto/key_exchange_test.cpp
         )
 target_link_libraries(abyss_crypto_test GTest::gtest_main Abyss::Crypto)
 set_target_properties(abyss_crypto_test PROPERTIES LINKER_LANGUAGE CXX)

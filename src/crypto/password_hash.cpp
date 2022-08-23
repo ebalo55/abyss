@@ -31,6 +31,8 @@ namespace abyss::crypto::hash::password {
                 mem_limit
         ) == 0) {
             ss << hash;
+
+            delete[] hash;
             return ss.str();
         }
 

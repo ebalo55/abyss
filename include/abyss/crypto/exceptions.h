@@ -154,5 +154,19 @@ namespace abyss::crypto::exception {
         [[nodiscard]]
         const char *what() const noexcept override;
     };
+
+    class key_exchange_invalid_server_public_key_exception
+            : std::exception {
+    public:
+        [[nodiscard]]
+        const char *what() const noexcept override;
+    };
+
+    class key_exchange_invalid_client_public_key_exception
+            : std::exception {
+    public:
+        [[nodiscard]]
+        const char *what() const noexcept override;
+    };
 }
 #endif //ABYSS_EXCEPTIONS_H

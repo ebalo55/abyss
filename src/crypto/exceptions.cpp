@@ -90,4 +90,12 @@ namespace abyss::crypto::exception {
     const char *key_derivation_requested_size_exception::what() const noexcept {
         return "Unable to derive a key, requested size must be between crypto_kdf_BYTES_MIN and crypto_kdf_BYTES_MAX.";
     }
+
+    const char *key_exchange_invalid_server_public_key_exception::what() const noexcept {
+        return "Unable to create shared keys, the server public key is invalid.";
+    }
+
+    const char *key_exchange_invalid_client_public_key_exception::what() const noexcept {
+        return "Unable to create shared keys, the client public key is invalid.";
+    }
 } // abyss::crypto
