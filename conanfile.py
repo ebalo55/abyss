@@ -5,7 +5,7 @@ from conan.tools.cmake import CMakeToolchain
 
 class ConanAbyss(ConanFile):
     name = "abyss"
-    version = "0.1.4"
+    version = "0.2.5"
     license = "MIT"
     url = "https://github.com/ebalo55/abyss"
     description = "Abyss fullstack framework for C++"
