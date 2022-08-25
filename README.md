@@ -3,19 +3,16 @@
 > without prior communication in a next release
 
 # About Abyss
-Abyss is a fullstack framework focused on web application development with an expressive and easy syntax. 
+Abyss is a fullstack framework focused on cross platform development in an expressive and easy syntax. 
 We believe development must be an enjoyable and creative experience to be truly fulfilling. 
-Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Abyss takes the pain out of development by easing common tasks such as:
 
-- [ ] Simple, fast routing engine. [_scheduled for development_]
-- [ ] Multiple back-ends for session and cache storage. [_scheduled for development_]
-- [ ] Expressive, intuitive database ORM. [_scheduled for development_]
-- [ ] Database agnostic schema migrations. [_scheduled for development_]
-- [ ] Robust background job processing. [_scheduled for development_]
-- [ ] Real-time event broadcasting. [_scheduled for development_]
+- [x] Logging. 
+- [x] Cryptography and encoding.
+- [ ] Much more coming soon
 
 ## Learning Abyss
-Abyss has an extensive documentation currently under development.
+Abyss has an extensive documentation you can check it in the [wiki](https://github.com/ebalo55/abyss/wiki).
 
 ## Contributing
 Thank you for considering contributing to the Abyss framework! 
