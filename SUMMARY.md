@@ -7,3 +7,5 @@
 * [Introduction](cryptography/introduction.md)
 * [Getting started](cryptography/getting-started.md)
 * [Encoding](cryptography/encoding.md)
+* [Padding](cryptography/padding.md)
+* [Randomness](cryptography/randomness.md)

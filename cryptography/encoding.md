@@ -6,6 +6,12 @@ Abyss provides quick and easy encoding and decoding capabilities to and from:
 * hexadecimal
 * base 64
 
+In this chapter, the following namespace aliasing is considered imported before each sample.
+
+```cpp
+using namespace ace = ac::encode;
+```
+
 ### Hex encoding & decoding
 
 Hex encoding and decoding can be done easily via the `hex(...)` and `hex_to_plain(...)` methods in the `abyss::crypto::encode` namespace
