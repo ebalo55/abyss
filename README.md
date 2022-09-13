@@ -21,7 +21,7 @@ Thank you for considering contributing to the Abyss framework! The contribution 
 
 ### Code of Conduct
 
-In order to ensure that the Abyss community is welcoming to all, please review and abide by the [Code of Conduct](<README (1).md>).
+In order to ensure that the Abyss community is welcoming to all, please review and abide by the [Code of Conduct](CODE\_OF\_CONDUCT.md).
 
 ### Security Vulnerabilities
 
