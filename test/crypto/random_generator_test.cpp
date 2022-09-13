@@ -36,4 +36,89 @@ TEST(CryptoTest, CanGenerateRandomBuffer) {
     EXPECT_EQ(nonce_1.size(), 36);
 }
 
+TEST(CryptoTest, CanGenerateRandomDouble) {
+    double test = 0.;
+//    std::cout << "test value is: " << test << std::endl
+//    << "test memory size is: " << sizeof(test) << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test, 0.);
+//    std::cout << "test value is: " << test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+}
+
+TEST(CryptoTest, CanGenerateRandomLongLong) {
+    long long test = 0;
+//    std::cout << "test value is: " << test << std::endl
+//    << "test memory size is: " << sizeof(test) << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test, 0);
+//    std::cout << "test value is: " << test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+}
+
+TEST(CryptoTest, CanGenerateRandomInt) {
+    int test = 0;
+//    std::cout << "test value is: " << test << std::endl
+//    << "test memory size is: " << sizeof(test) << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test, 0);
+//    std::cout << "test value is: " << test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+}
+
+TEST(CryptoTest, CanGenerateRandomInt8) {
+    int test = 0;
+//    std::cout << "test value is: " << (int) test << std::endl
+//    << "test memory size is: " << sizeof(test) << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test, 0);
+//    std::cout << "test value is: " << (int) test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+}
+
+TEST(CryptoTest, CanGenerateRandomIntMax) {
+    intmax_t test = 0;
+//    std::cout << "test value is: " << test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test, 0);
+//    std::cout << "test value is: " << test << std::endl
+//              << "test memory size is: " << sizeof(test) << std::endl;
+}
+
+TEST(CryptoTest, CanGenerateRandomIntArray) {
+    int test[] = {0, 0, 0, 0};
+//    std::cout << "test value is: "
+//            << test[0]
+//            << ", "
+//            << test[1]
+//            << ", "
+//            << test[2]
+//            << ", "
+//            << test[3]
+//            << ", "
+//            << std::endl
+//            << "test memory size is: "
+//            << sizeof(test)
+//            << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test[0], 0);
+    EXPECT_NE(test[1], 0);
+    EXPECT_NE(test[2], 0);
+    EXPECT_NE(test[3], 0);
+//    std::cout << "test value is: "
+//              << test[0]
+//              << ", "
+//              << test[1]
+//              << ", "
+//              << test[2]
+//              << ", "
+//              << test[3]
+//              << ", "
+//              << std::endl
+//              << "test memory size is: "
+//              << sizeof(test)
+//              << std::endl;
+}
+
 #endif //ABYSS_HELLO_TEST_CPP

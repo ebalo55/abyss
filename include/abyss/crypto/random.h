@@ -20,7 +20,19 @@ namespace abyss::crypto::random {
      * @param upper_bound Upper bound of generation
      * @return
      */
-    uint32_t generate(uint32_t upper_bound);
+    uint32_t generate(uint32_t
+    upper_bound);
+
+    /**
+     * Fill in a pointer with the given number of random bytes
+     * @param container Pointer where to store the random data
+     * @param size Byte size of the pointer memory allocation
+     * @return
+     */
+    template<typename ref>
+    void generate(ref* container, size_t size) {
+        randombytes_buf(container, size);
+    }
 
     /**
      * Generate a random number between 0 and the upper bound excluded.
@@ -28,7 +40,8 @@ namespace abyss::crypto::random {
      * @param upper_bound Upper bound of generation
      * @return
      */
-    uint32_t generate_uniform(uint32_t upper_bound);
+    uint32_t generate_uniform(uint32_t
+    upper_bound);
 
     /**
      * Generates an unpredictable sequence of bytes into buf
