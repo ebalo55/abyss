@@ -1,4 +1,4 @@
 # Table of contents
 
-* [Code of conduct](README.md)
-* [README](<README (1).md>)
+* [README](README.md)
+* [Code of conduct](<README (1).md>)
