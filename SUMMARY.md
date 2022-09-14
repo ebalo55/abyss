@@ -1,6 +1,6 @@
 # Table of contents
 
-* [README](README.md)
+* [Introduction](README.md)
 * [Cryptography](cryptography/README.md)
   * [Encoding](cryptography/encoding.md)
   * [Randomness](cryptography/randomness.md)
