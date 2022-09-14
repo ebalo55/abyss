@@ -121,4 +121,39 @@ TEST(CryptoTest, CanGenerateRandomIntArray) {
 //              << std::endl;
 }
 
+TEST(CryptoTest, CanGenerateRandomDoubleArray) {
+    double test[] = {0, 0, 0, 0};
+//    std::cout << "test value is: "
+//            << test[0]
+//            << ", "
+//            << test[1]
+//            << ", "
+//            << test[2]
+//            << ", "
+//            << test[3]
+//            << ", "
+//            << std::endl
+//            << "test memory size is: "
+//            << sizeof(test)
+//            << std::endl;
+    abyss::crypto::random::generate(&test, sizeof(test));
+    EXPECT_NE(test[0], 0);
+    EXPECT_NE(test[1], 0);
+    EXPECT_NE(test[2], 0);
+    EXPECT_NE(test[3], 0);
+//    std::cout << "test value is: "
+//              << test[0]
+//              << ", "
+//              << test[1]
+//              << ", "
+//              << test[2]
+//              << ", "
+//              << test[3]
+//              << ", "
+//              << std::endl
+//              << "test memory size is: "
+//              << sizeof(test)
+//              << std::endl;
+}
+
 #endif //ABYSS_HELLO_TEST_CPP
