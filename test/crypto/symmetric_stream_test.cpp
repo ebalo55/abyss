@@ -17,7 +17,7 @@ TEST(CryptoTest, CanEncryptAndDecryptStreamUsingSymmetricEncryption) {
 
     std::string m1 = "This is one of the chunk ",
             m2 = "that should be encoded...\n",
-            m3 = "Hopefully everything goes well, even with some number? ",
+            m3 = "That's pretty awesome, isn't it?",
             c1, c2, c3, c4;
 
     c1 = encryption_stream->write(m1);
@@ -25,13 +25,13 @@ TEST(CryptoTest, CanEncryptAndDecryptStreamUsingSymmetricEncryption) {
     c3 = encryption_stream->write(m3);
     c4 = encryption_stream->closeStream();
 
-    /*std::cout << "key: " << abyss::crypto::encode::_base64(encryption_key) << std::endl
-              << "header: " << abyss::crypto::encode::_base64(header) << std::endl
+    /*std::cout << "key: " << abyss::crypto::encode::base64(encryption_key) << std::endl
+              << "header: " << abyss::crypto::encode::base64(header) << std::endl
               << "messages: " << std::endl
-              << "\t[0]: " << abyss::crypto::encode::_base64(c1) << std::endl
-              << "\t[1]: " << abyss::crypto::encode::_base64(c2) << std::endl
-              << "\t[2]: " << abyss::crypto::encode::_base64(c3) << std::endl
-              << "\t[3]: " << abyss::crypto::encode::_base64(c4) << std::endl;*/
+              << "\t[0]: " << abyss::crypto::encode::base64(c1) << std::endl
+              << "\t[1]: " << abyss::crypto::encode::base64(c2) << std::endl
+              << "\t[2]: " << abyss::crypto::encode::base64(c3) << std::endl
+              << "\t[3]: " << abyss::crypto::encode::base64(c4) << std::endl;*/
 
     auto decryption_stream = symmetric_stream::makeDecryptionStream(header, encryption_key);
 

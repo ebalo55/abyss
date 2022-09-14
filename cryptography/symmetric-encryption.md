@@ -1,9 +1,12 @@
 # Symmetric encryption
 
 Symmetric encryption uses the same key for both the operation of encoding and decoding.\
-Abyss make data encryption using libsodium algorithms as easy as possible, for a deeper understanding of how the algorithm works check the libsodium official documentation [here](https://doc.libsodium.org/secret-key\_cryptography/secretbox#algorithm-details).
+Abyss make data encryption using libsodium algorithms as easy as possible, for a deeper understanding of how the 
+algorithm works check the libsodium official documentation 
+[here](https://doc.libsodium.org/secret-key\_cryptography/secretbox#algorithm-details).
 
-Additionally, Abyss always uses the authenticated version of the encryption algorithms provided by libsodium so that the encrypted messages cannot be tampered with without corrupting the whole message.
+Additionally, Abyss always uses the authenticated version of the encryption algorithms provided by libsodium so that the 
+encrypted messages cannot be tampered with without corrupting the whole message.
 
 In this chapter, the following namespace aliasing is considered imported before each sample.
 
@@ -22,13 +25,16 @@ The algorithms used are the ones defaulting in libsodium 1.0.18.
 ### Encryption
 
 The encryption of a message can be done with two methods: `encrypt(...)` and `encrypt_detached(...)`.\
-Both versions have many overloads in order to allow for full and easy flexibility in the construction of the encrypted text.
+Both versions have many overloads in order to allow for full and easy flexibility in the construction of the encrypted 
+text.
 
-What makes the `_detached` method different from the standard `encrypt` is that the authentication tag is not automatically stored within the message, it is instead stored in a separate attribute of the returned structure.
+What makes the `_detached` method different from the standard `encrypt` is that the authentication tag is not 
+automatically stored within the message, it is instead stored in a separate attribute of the returned structure.
 
 #### Resulting struct
 
-Abyss provides encryption return types as structures, this is done in order to allow anyone to use it without any difficulty.
+Abyss provides encryption return types as structures, this is done in order to allow anyone to use it without any 
+difficulty.
 
 ```cpp
 struct encryption_data {
@@ -133,4 +139,31 @@ auto encrypted_3 = acsm::encrypt_detached({
     .key = acsm::make_key(),
     .nonce = acsm::make_nonce(),
 });
+```
+
+### Decryption
+The encryption of a message can be done with two methods: `decrypt(...)` and `decrypt_detached(...)`.\
+Both versions have two overloads in order to allow for additional flexibility in the decryption of messages.\
+Resulting structs of the decryption are defined as aliases of the one used in encryption, refer to the definition of
+encryption structs [here](#Resulting struct).
+
+```cpp
+auto encrypted = acsm::encrypt("test");
+auto encrypted_detached = acsm::encrypt_detached("test");
+
+// decrypt a compact encrypted message via its struct definition
+acsm::decrypt(encrypted_message); // test
+// or decrypt it via single parameters call
+acsm::decrypt(encrypted.message, encrypted.key, encrypted.nonce); // test
+
+
+// decrypt a detached encrypted message via its struct definition
+acsm::decrypt_detached(encrypted_detached); // test
+// or decrypt it via single parameters call
+acsm::decrypt_detached(
+        encrypted_detached.authentication_tag, 
+        encrypted_detached.message, 
+        encrypted_detached.key, 
+        encrypted_detached.nonce
+); // test
 ```
