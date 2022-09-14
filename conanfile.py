@@ -46,6 +46,8 @@ class ConanAbyss(ConanFile):
         if tools.Version(self.version) >= "0.1.0":
             self.requires("spdlog/1.10.0")
             self.requires("fmt/8.1.1")
+            self.requires("gtest/1.12.1")
+            self.requires("libsodium/1.0.18")
 
     def generate(self):
         tc = CMakeToolchain(self)
