@@ -2,7 +2,7 @@
 
 Abyss provides quick and easy encoding and decoding capabilities to and from:
 
-* binary
+* binary&#x20;
 * hexadecimal
 * base 64
 
