@@ -52,9 +52,7 @@ namespace abyss::crypto::symmetric {
 
     std::string symmetric_stream::closeStream() {
         if (is_operating_in_encryption_mode_) {
-            std::string response = write("", symmetric_stream_tag::_stream_end);
-            is_stream_open_ = false;
-            return response;
+            return write("", symmetric_stream_tag::_stream_end);
         }
         return "";
     }
