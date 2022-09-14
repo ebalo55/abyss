@@ -37,10 +37,10 @@ long long int value_0 = 0;
 int8_t value_1 = 0;
 int16_t value_2 = 0;
 int value_3[] = [0, 0, 0, 0]:
-acr::generate(&container, sizeof(container));
-acr::generate(&container, sizeof(value_1));
-acr::generate(&container, sizeof(value_2));
-acr::generate(&container, sizeof(value_3));
+acr::generate(&value_0, sizeof(value_0));
+acr::generate(&value_1, sizeof(value_1));
+acr::generate(&value_2, sizeof(value_2));
+acr::generate(&value_3, sizeof(value_3));
 ```
 
 ### Random string
