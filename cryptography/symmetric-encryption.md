@@ -63,7 +63,7 @@ typedef struct encryption_data_detached encrypted_data_detached_t;
 typedef struct encryption_data_detached decryption_data_detached_t;
 ```
 
-### Combined mode
+#### Combined mode
 
 Combined mode uses the `encrypt(...)` method and stores the authentication tag with the encrypted message.
 
@@ -101,7 +101,7 @@ auto encrypted_3 = acsm::encrypt({
 });
 ```
 
-### Detached mode
+#### Detached mode
 
 Detached mode uses the `encrypt_detached(...)` method and stores the authentication tag separately from the message.
 
