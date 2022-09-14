@@ -9,3 +9,4 @@
 * [Encoding](cryptography/encoding.md)
 * [Padding](cryptography/padding.md)
 * [Randomness](cryptography/randomness.md)
+* [Symmetric encryption](cryptography/symmetric-encryption.md)
