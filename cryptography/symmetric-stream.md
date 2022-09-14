@@ -1,12 +1,8 @@
 # Symmetric stream
 
-Symmetric encryption is awesome for messages or for unrelated data but if a message start becoming larger and larger,
-let's say 1Gb loading it all in memory and encrypting it using standard API can become a heavy task taking more than
-1Gb of memory.\
-Streaming mode allows for the reading and encryption of a set of related messages without any need to load everything
-in memory all at once.\
-For a full explanation of how the encryption algorithm works refer to the
-[official Libsodium documentation](https://doc.libsodium.org/secret-key_cryptography/secretstream#algorithm).
+Symmetric encryption is awesome for messages or for unrelated data but if a message start becoming larger and larger, let's say 1Gb loading it all in memory and encrypting it using standard API can become a heavy task taking more than 1Gb of memory.\
+Streaming mode allows for the reading and encryption of a set of related messages without any need to load everything in memory all at once.\
+For a full explanation of how the encryption algorithm works refer to the [official Libsodium documentation](https://doc.libsodium.org/secret-key\_cryptography/secretstream#algorithm).
 
 In this chapter, the following namespace aliasing is considered imported before each sample.
 
@@ -18,9 +14,7 @@ using namespace ace = ac::encode;
 
 ### Stream tags
 
-Each stream chunk can be completed with an additional tag stating its type or the operation to run once the chunk
-encryption
-is completed.\
+Each stream chunk can be completed with an additional tag stating its type or the operation to run once the chunk encryption is completed.\
 Tags are defined in the `symmetric_stream_tag` enum under the `abyss::crypto::symmetric` namespace.
 
 ```cpp
@@ -34,18 +28,14 @@ enum symmetric_stream_tag {
 
 Tags are defined as follows:
 
-* `_message`: Used to state that a chunk is simply a message, followed by other messages, no other operation are needed
-  once the encryption is completed.
+* `_message`: Used to state that a chunk is simply a message, followed by other messages, no other operation are needed once the encryption is completed.
 * `_message_end`: Used to state that a message is completed and a new one will start with the next chunk.
-* `_rekey`: Used to state that a forced rekey is required at the end of the current message.
-  New keys are automatically used for the encryption of following chunks.
+* `_rekey`: Used to state that a forced rekey is required at the end of the current message. New keys are automatically used for the encryption of following chunks.
 * `_stream_end`: States the end of the stream, no other messages will be received, the stream is closed.
 
 ### Encryption
 
-All encryption operation gets done via a `symmetric_stream` object containing all the data of the current stream, this
-means that multiple encryption (or decryption) stream can be executed simultaneously using a thread pool or parallel
-processing.\
+All encryption operation gets done via a `symmetric_stream` object containing all the data of the current stream, this means that multiple encryption (or decryption) stream can be executed simultaneously using a thread pool or parallel processing.\
 The initialization of the object is guided via the `make_encryption_stream(...)` method.
 
 ```cpp
@@ -86,8 +76,7 @@ cout << ace::base64(header) << endl
 
 ### Decryption
 
-The decryption works almost the same as the encryption; initialization of the object is guided via the
-`make_decryption_stream(...)` method.
+The decryption works almost the same as the encryption; initialization of the object is guided via the `make_decryption_stream(...)` method.
 
 ```cpp
 // Messages received in some way from the previous code-block

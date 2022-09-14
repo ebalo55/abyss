@@ -7,3 +7,4 @@
   * [Padding](cryptography/padding.md)
   * [Getting started](cryptography/getting-started.md)
   * [Symmetric encryption](cryptography/symmetric-encryption.md)
+  * [Symmetric stream](cryptography/symmetric-stream.md)
