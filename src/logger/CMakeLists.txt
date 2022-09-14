@@ -38,32 +38,32 @@ set(ABYSS_LOGGER_SOURCES
         ${ABYSS_LOGGER_PUBLIC_API})
 
 # create library
-add_library(Logger ${ABYSS_LOGGER_SOURCES})
-add_library(Abyss::Logger ALIAS Logger)
-set_target_properties(Logger PROPERTIES
+add_library(abyss_logger ${ABYSS_LOGGER_SOURCES})
+add_library(Abyss::Logger ALIAS abyss_logger)
+set_target_properties(abyss_logger PROPERTIES
         VERSION ${ABYSS_LOGGER_VERSION}
         SOVERSION "${ABYSS_LOGGER_VERSION_MAJOR}.${ABYSS_LOGGER_VERSION_MINOR}")
 
 # define macro values
 if (ABYSS_LOGGER_INCLUDES_QT_SINK)
-    target_compile_definitions(Logger PRIVATE INCLUDE_QT_SINK=true)
+    target_compile_definitions(abyss_logger PRIVATE INCLUDE_QT_SINK=true)
 endif ()
 if (ABYSS_LOGGER_INCLUDES_SYSTEMD_SINK)
-    target_compile_definitions(Logger PRIVATE INCLUDE_SYSTEMD_SINK=true)
+    target_compile_definitions(abyss_logger PRIVATE INCLUDE_SYSTEMD_SINK=true)
 endif ()
 if (ABYSS_LOGGER_INCLUDES_MONGO_DB_SINK)
-    target_compile_definitions(Logger PRIVATE INCLUDE_MONGO_DB_SINK=true)
+    target_compile_definitions(abyss_logger PRIVATE INCLUDE_MONGO_DB_SINK=true)
 endif ()
 
 # add include directories
-target_include_directories(Logger
+target_include_directories(abyss_logger
         PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
         )
 
 # install the target and create export-set
-install(TARGETS Logger
+install(TARGETS abyss_logger
         EXPORT LoggerTargets
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/abyss
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/abyss

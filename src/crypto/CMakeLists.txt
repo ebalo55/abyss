@@ -30,22 +30,22 @@ set(ABYSS_CRYPTO_SOURCES
 find_package(libsodium REQUIRED)
 
 # create library
-add_library(Crypto ${ABYSS_CRYPTO_SOURCES})
-add_library(Abyss::Crypto ALIAS Crypto)
-target_link_libraries(Crypto PRIVATE libsodium::libsodium)
-set_target_properties(Crypto PROPERTIES
+add_library(abyss_crypto ${ABYSS_CRYPTO_SOURCES})
+add_library(Abyss::Crypto ALIAS abyss_crypto)
+target_link_libraries(abyss_crypto PRIVATE libsodium::libsodium)
+set_target_properties(abyss_crypto PROPERTIES
         VERSION ${ABYSS_CRYPTO_VERSION}
         SOVERSION "${ABYSS_CRYPTO_VERSION_MAJOR}.${ABYSS_CRYPTO_VERSION_MINOR}")
 
 # add include directories
-target_include_directories(Crypto
+target_include_directories(abyss_crypto
         PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
         )
 
 # install the target and create export-set
-install(TARGETS Crypto
+install(TARGETS abyss_crypto
         EXPORT CryptoTargets
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/abyss
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/abyss
