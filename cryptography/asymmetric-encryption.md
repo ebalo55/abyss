@@ -21,7 +21,7 @@ text.
 What makes the `_detached` method different from the standard `encrypt` is that the authentication tag is not
 automatically stored within the message, it is instead stored in a separate attribute of the returned structure.
 
-### Resulting struct
+#### Resulting struct
 
 Abyss provides encryption return types as structures, this is done in order to allow anyone to use it without any
 difficulty.
