@@ -159,7 +159,12 @@ acsm::decrypt(encrypted); // test
 //       sender's public key and the receiver's secret one instead.
 acsm::decrypt(encrypted.message, encrypted.nonce, encrypted.keypair); // test
 // or
-acsm::decrypt(encrypted.message, encrypted.nonce, sender_kp.public_key, receiver_kp.secret_key); // test
+acsm::decrypt(
+        encrypted.message, 
+        encrypted.nonce, 
+        sender_kp.public_key, 
+        receiver_kp.secret_key
+); // test
 
 
 // decrypt a detached encrypted message via its struct definition
