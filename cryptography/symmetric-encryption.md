@@ -152,7 +152,7 @@ auto encrypted = acsm::encrypt("test");
 auto encrypted_detached = acsm::encrypt_detached("test");
 
 // decrypt a compact encrypted message via its struct definition
-acsm::decrypt(encrypted_message); // test
+acsm::decrypt(encrypted); // test
 // or decrypt it via single parameters call
 acsm::decrypt(encrypted.message, encrypted.key, encrypted.nonce); // test
 
